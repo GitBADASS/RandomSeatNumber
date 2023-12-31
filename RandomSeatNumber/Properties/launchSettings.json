@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RandomSeatNumber (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "RandomSeatNumber (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
