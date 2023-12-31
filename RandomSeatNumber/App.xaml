@@ -9,7 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--修改主题颜色-->
-            <Color x:Key="SystemAccentColor">#F5F5F5</Color>
+            <Color x:Key="SystemAccentColor">#F2F2F2</Color>
             <Color x:Key="SystemAccentColorDark1">#272727</Color>
             <Color x:Key="SystemAccentColorDark2">#272727</Color>
             <Color x:Key="SystemAccentColorDark3">#272727</Color>
@@ -27,18 +27,14 @@
                 <ResourceDictionary>
                     <ResourceDictionary.ThemeDictionaries>
                         <ResourceDictionary x:Key="Default">
-                            <!--边栏颜色、材质-->
-                            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" 
-                                TintColor="{ThemeResource SystemAccentColor}"
-                                TintOpacity="0.8"
-                                TintLuminosityOpacity="0.5"
-                                FallbackColor="{ThemeResource SystemAccentColorDark1}"/>
+                            <!--边栏颜色-->
+                            <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground"
+                                             Color="{ThemeResource SystemAccentColor}"/>
+                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground"
+                                             Color="{ThemeResource SystemAccentColor}"/>
                         </ResourceDictionary>
+                        
                         <ResourceDictionary x:Key="HighContrast">
-                            <!--Always include a "HighContrast" dictionary when you override
-                                 theme resources. This empty dictionary ensures that the
-                                 default high contrast resources are used when the user
-                                 turns on high contrast mode.-->
                         </ResourceDictionary>
                     </ResourceDictionary.ThemeDictionaries>
 

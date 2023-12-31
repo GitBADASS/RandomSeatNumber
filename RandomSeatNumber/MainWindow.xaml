@@ -3,61 +3,22 @@
     x:Class="RandomSeatNumber.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RandomSeatNumber"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <NavigationView   PaneDisplayMode="Left" 
-                      IsSettingsVisible="false" IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False"
-                      PaneTitle="RandomSN">
+                      IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False"
+                      PaneTitle="RandomSN"
+                      SelectionChanged="NavigationView_SelectionChanged">
         <!--侧边栏-->
         <!--标题栏的控制区域影响到了侧栏按钮的点击，考虑解决-->
         <NavigationView.MenuItems>
-            <NavigationViewItem Icon="Play" Content="1" Tag="SamplePage1"/>
-            <NavigationViewItem Icon="Save" Content="2" Tag="SamplePage2"/>
-            <NavigationViewItem Icon="Refresh" Content="3" Tag="SamplePage3"/>
-            <NavigationViewItem Icon="Download" Content="4" Tag="SamplePage4"/>
+            <NavigationViewItem Icon="Play" Content="随机生成" Tag="Generation_Page"/>
+            <NavigationViewItem Icon="Library" Content="开发信息" Tag="Introduction_Page"/>
         </NavigationView.MenuItems>
         <Frame x:Name="contentFrame"/>
         
-        <!--样式--><!--
-        <NavigationView.Resources>
-            <Style TargetType="NavigationViewItem">
-                <Setter Property="Foreground" Value="White"/>
-            </Style>
-        </NavigationView.Resources>-->
-        
     </NavigationView>
     
-    <!--窗口主体--><!--
-    <StackPanel>
-        
-    --><!--内容部分-显示主体内容--><!--
-        <StackPanel Height="Auto" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"  MaxWidth="500">
-            <StackPanel x:Name="numberContainer" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock x:Name="seatNumberText" FontSize="150" Text="?, ?, ?" FontWeight="Bold"/>
-            </StackPanel>
-            <StackPanel>
-                <Button x:Name="generate" Click="generate_Click" Width="100">生成</Button>
-            </StackPanel>
-            <StackPanel Background="#F2F2F2" Margin="0, 18, 0, 18">
-                <RichTextBlock Margin="18">
-                    <Paragraph Margin="0, 18, 0, 0">
-                        <Bold>
-                            <Span Foreground="#323232" FontSize="20">开发信息</Span>
-                        </Bold>
-                    </Paragraph>
-                    <Paragraph>
-                        <Span Foreground="#323232">
-                            开发版本：beta 0.0.1
-                            <LineBreak/>
-                            开发者：黄帅哲
-                            <LineBreak/>
-                            开发说明：本程序的开发处于最初级阶段，暂且只关注程序功能的正确实现。开发者在往后会对程序进行进一步优化升级。本程序针对 12 班座位实际情况设计，目前尚不能适配其他情况。
-                        </Span>
-                    </Paragraph>
-                </RichTextBlock>
-            </StackPanel>
-        </StackPanel>
-    </StackPanel>-->
+   
 </Window>

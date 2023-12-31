@@ -1,5 +1,6 @@
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using WinRT.Interop;
 
@@ -28,6 +29,9 @@ namespace RandomSeatNumber
             CurrentAppWindow = GetAppWindowForCurrentWindow();
             var titleBar = CurrentAppWindow.TitleBar;
             titleBar.ExtendsContentIntoTitleBar = true;
+
+            //默认导航到 Generation 页面
+            contentFrame.Navigate(typeof(Pages.Generation_Page));
         }
 
         //按钮点击事件
@@ -77,7 +81,7 @@ namespace RandomSeatNumber
                 columnNum = random.Next(2, 3 + 1); //列，每行共有三列
             }
 
-            seatNum[0] = districtNum; 
+            seatNum[0] = districtNum;
             seatNum[1] = rowNum;
             seatNum[2] = columnNum;
 
@@ -101,6 +105,20 @@ namespace RandomSeatNumber
             IntPtr hWnd = WindowNative.GetWindowHandle(this);
             WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
             return Microsoft.UI.Windowing.AppWindow.GetFromWindowId(wndId);
+        }
+
+        private void NavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        {
+            var SelectedItem = (NavigationViewItem)args.SelectedItem;
+            switch ((String)SelectedItem.Tag)
+            {
+                case "Generation_Page":
+                    contentFrame.Navigate(typeof(Pages.Generation_Page));
+                    break;
+                case "InforMation_Page":
+                    contentFrame.Navigate(typeof(Pages.Information_Page));
+                    break;
+            }
         }
     }
 }
