@@ -8,5 +8,6 @@ namespace RandomSeatNumber.Generate
 {
     internal class Generator
     {
+
     }
 }

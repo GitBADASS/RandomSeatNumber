@@ -12,7 +12,7 @@
     <ScrollView VerticalScrollBarVisibility="Visible">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock FontSize="180" FontWeight="Bold">开始生成</TextBlock>
-            <Button x:Name="Generation_Button" Height="50" Width="150" Margin="0 50 0 50">生成</Button>
+            <Button x:Name="Generation_Button" Height="50" Width="150" Margin="0 50 0 50" Click="Generation_Button_Click">生成</Button>
         </StackPanel>
     </ScrollView>
 </Page>

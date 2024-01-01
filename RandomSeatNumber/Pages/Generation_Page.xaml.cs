@@ -27,5 +27,10 @@ namespace RandomSeatNumber.Pages
         {
             this.InitializeComponent();
         }
+
+        private void Generation_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
