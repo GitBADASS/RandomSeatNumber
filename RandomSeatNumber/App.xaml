@@ -9,37 +9,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--修改主题颜色-->
-            <Color x:Key="SystemAccentColor">#F2F2F2</Color>
-            <Color x:Key="SystemAccentColorDark1">#272727</Color>
-            <Color x:Key="SystemAccentColorDark2">#272727</Color>
-            <Color x:Key="SystemAccentColorDark3">#272727</Color>
-            <Color x:Key="SystemAccentColorLight1">#FFFFFF</Color>
-            <Color x:Key="SystemAccentColorLight2">#FFFFFF</Color>
-            <Color x:Key="SystemAccentColorLight3">#FFFFFF</Color>
+            <Color x:Key="SystemAccentColor">#EC7063</Color>
+            <Color x:Key="SystemAccentColorDark1">#E74C3C</Color>
+            <Color x:Key="SystemAccentColorDark2">#922B21</Color>
+            <Color x:Key="SystemAccentColorDark3">#641E16</Color>
+            <Color x:Key="SystemAccentColorLight1">#E6B0AA</Color>
+            <Color x:Key="SystemAccentColorLight2">#F2D7D5</Color>
+            <Color x:Key="SystemAccentColorLight3">#F9EBEA</Color>
             <!--修改主题颜色结束-->
 
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!-- Other merged dictionaries here -->
-
-                <!--修改主题样式-->
-                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
-                <ResourceDictionary>
-                    <ResourceDictionary.ThemeDictionaries>
-                        <ResourceDictionary x:Key="Default">
-                            <!--边栏颜色-->
-                            <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground"
-                                             Color="{ThemeResource SystemAccentColor}"/>
-                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground"
-                                             Color="{ThemeResource SystemAccentColor}"/>
-                        </ResourceDictionary>
-                        
-                        <ResourceDictionary x:Key="HighContrast">
-                        </ResourceDictionary>
-                    </ResourceDictionary.ThemeDictionaries>
-
-                </ResourceDictionary>
-                <!--修改主题样式结束-->
 
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->

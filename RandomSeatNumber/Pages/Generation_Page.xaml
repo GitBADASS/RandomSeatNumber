@@ -9,10 +9,23 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ScrollView VerticalScrollBarVisibility="Visible">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock FontSize="180" FontWeight="Bold">开始生成</TextBlock>
-            <Button x:Name="Generation_Button" Height="50" Width="150" Margin="0 50 0 50" Click="Generation_Button_Click">生成</Button>
+    <Grid  Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="main" Height="2*"/>
+            <RowDefinition x:Name="footer" Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--main-->
+        <ScrollView Grid.Row="0" 
+                    VerticalScrollBarVisibility="Visible">
+            <StackPanel>
+                <TextBlock>1234567</TextBlock>
+            </StackPanel>
+        </ScrollView>
+        
+        <!--footer-->
+        <StackPanel Grid.Row="1">
+            <Button x:Name="Generation_Button" Height="50" Width="150" Click="Generation_Button_Click">生成</Button>
         </StackPanel>
-    </ScrollView>
+    </Grid>
 </Page>

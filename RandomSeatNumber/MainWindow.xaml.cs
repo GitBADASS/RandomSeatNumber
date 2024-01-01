@@ -1,6 +1,7 @@
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System;
 using WinRT.Interop;
 
@@ -21,6 +22,7 @@ namespace RandomSeatNumber
         {
             //初始化控件
             this.InitializeComponent();
+            SystemBackdrop = new DesktopAcrylicBackdrop();
 
             //设置标题文本
             this.Title = "高一 12 班随机点名程序";
@@ -115,7 +117,7 @@ namespace RandomSeatNumber
                 case "Generation_Page":
                     contentFrame.Navigate(typeof(Pages.Generation_Page));
                     break;
-                case "InforMation_Page":
+                case "Information_Page":
                     contentFrame.Navigate(typeof(Pages.Information_Page));
                     break;
             }

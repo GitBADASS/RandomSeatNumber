@@ -6,7 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <NavigationView   PaneDisplayMode="Left" 
+    <Window.SystemBackdrop>
+        <DesktopAcrylicBackdrop/>
+    </Window.SystemBackdrop>
+    <NavigationView   x:Name="SideBar" 
+                      PaneDisplayMode="Left" 
                       IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False"
                       PaneTitle="RandomSN"
                       SelectionChanged="NavigationView_SelectionChanged">
@@ -14,7 +18,7 @@
         <!--标题栏的控制区域影响到了侧栏按钮的点击，考虑解决-->
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="Play" Content="随机生成" Tag="Generation_Page"/>
-            <NavigationViewItem Icon="Library" Content="开发信息" Tag="Introduction_Page"/>
+            <NavigationViewItem Icon="Library" Content="开发信息" Tag="Information_Page"/>
         </NavigationView.MenuItems>
         <Frame x:Name="contentFrame"/>
         
