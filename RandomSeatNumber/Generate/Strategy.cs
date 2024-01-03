@@ -13,41 +13,18 @@ namespace RandomSeatNumber.Generate
     /// </summary>
     class Strategy
     {
-        public Strategy(string DistractLimition, string RowLimition, string ColumnLimition)
+        /// <summary>
+        /// 内容属性 包含策略中的所有组
+        /// </summary>
+        internal List<Distract> Content { get; set; }
+
+        /// <summary>
+        /// 接受一个 `Distract` 集合
+        /// </summary>
+        /// <param name="content">传入一个集合，内容为所有组</param>
+        public Strategy(List<Distract> content)
         {
-            this.RowLimition = RowLimition;
-            this.ColumnLimition = ColumnLimition;
-            this.DistractLimition = DistractLimition;
+            Content = content;
         }
-
-        /// <summary>
-        /// 区限制，浅规定配置信息中的区数
-        /// </summary>
-        private string distractlimition;
-        public string DistractLimition { get => distractlimition; set => distractlimition = value; }
-
-        /// <summary>
-        /// 行限制，浅规定每区行数
-        /// </summary>
-        private string rowLimition;
-        public string RowLimition { get => rowLimition; set => rowLimition = value; }
-
-        /// <summary>
-        /// 列限制，浅规定每区每行多少列
-        /// </summary>
-        private string collimition;
-        public string ColumnLimition { get => collimition; set => collimition = value; }
-        
-        /// <summary>
-        /// 附加的座位，用于应对特殊情况
-        /// </summary>
-        private string whiteList;
-        public string Whitelist { get => whiteList; set => whiteList = value; }
-
-        /// <summary>
-        /// 移除的座位，用于特殊情况与消除某座位的权重
-        /// </summary>
-        private string blackList;
-        public string BlackList { get => blackList; set => blackList = value; }
     }
 }
