@@ -29,12 +29,14 @@ namespace RandomSeatNumber.Generate
         /// <summary>
         /// 附加的座位，用于应对特殊情况
         /// </summary>
+        // TODO 应为长度为 2 的数组
         private int whiteList;
         public int Whitelist { get => whiteList; set => whiteList = value; }
 
         /// <summary>
         /// 移除的座位，用于特殊情况与消除某座位的权重
-        /// </summary>
+        /// </summary
+        // TODO 应为长度为 2 的数组
         private int blackList;
         public int BlackList { get => blackList; set => blackList = value; }
 

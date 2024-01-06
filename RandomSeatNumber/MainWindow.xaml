@@ -12,14 +12,25 @@
     <NavigationView   x:Name="SideBar" 
                       PaneDisplayMode="Left" 
                       IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False"
+                      IsSettingsVisible="False"
                       PaneTitle="RandomSN"
                       SelectionChanged="NavigationView_SelectionChanged">
         <!--侧边栏-->
         <!--标题栏的控制区域影响到了侧栏按钮的点击，考虑解决-->
         <NavigationView.MenuItems>
-            <NavigationViewItem Icon="Play" Content="随机生成" Tag="Generation_Page"/>
-            <NavigationViewItem Icon="Library" Content="开发信息" Tag="Information_Page"/>
+            <NavigationViewItem Icon="Play" 
+                                Content="随机生成" 
+                                Tag="Generation_Page"/>
+            <NavigationViewItem Icon="ViewAll" 
+                                Content="座次配置" 
+                                Tag="SeatOrder_Page"/>
+            
         </NavigationView.MenuItems>
+
+        <NavigationView.FooterMenuItems>
+            <NavigationViewItem Icon="Library" Content="开发信息" Tag="Information_Page"/>
+            <NavigationViewItem Icon="Setting" Content="设置" Tag="Information_Page"/>
+        </NavigationView.FooterMenuItems>
         <Frame x:Name="contentFrame"/>
         
     </NavigationView>

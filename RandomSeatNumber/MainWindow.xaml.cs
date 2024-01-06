@@ -2,6 +2,7 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using WinRT.Interop;
 
@@ -33,7 +34,7 @@ namespace RandomSeatNumber
             titleBar.ExtendsContentIntoTitleBar = true;
 
             //默认导航到 Generation 页面
-            contentFrame.Navigate(typeof(Pages.Generation_Page));
+            contentFrame.Navigate(typeof(Pages.Generation_Page), null, new EntranceNavigationTransitionInfo());
         }
 
         //按钮点击事件

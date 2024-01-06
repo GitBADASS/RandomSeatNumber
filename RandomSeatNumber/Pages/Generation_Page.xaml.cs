@@ -12,15 +12,12 @@ namespace RandomSeatNumber.Pages
     /// </summary>
     public sealed partial class Generation_Page : Page
     {
+
         public Generation_Page()
         {
             this.InitializeComponent();
 
         }
 
-        private void Generation_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
