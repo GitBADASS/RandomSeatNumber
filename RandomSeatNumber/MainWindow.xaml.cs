@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using System;
+using System.Linq;
 using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -34,7 +35,9 @@ namespace RandomSeatNumber
             titleBar.ExtendsContentIntoTitleBar = true;
 
             //默认导航到 Generation 页面
-            contentFrame.Navigate(typeof(Pages.Generation_Page), null, new EntranceNavigationTransitionInfo());
+            contentFrame.Navigate(typeof(Pages.Generation_Page), null, new EntranceNavigationTransitionInfo());// 导航
+            ((Microsoft.UI.Xaml.Controls.NavigationViewItem)SideBar.MenuItems[0]).IsSelected = true;// 选中
+
         }
 
         //按钮点击事件
@@ -110,6 +113,7 @@ namespace RandomSeatNumber
             return Microsoft.UI.Windowing.AppWindow.GetFromWindowId(wndId);
         }
 
+        // 导航项更改事件，导航页面用
         private void NavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
             var SelectedItem = (NavigationViewItem)args.SelectedItem;

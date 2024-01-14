@@ -10,13 +10,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
+
         <StackPanel Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                     Margin="20"
                     MinHeight="280"
                     MaxHeight="500"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    BorderThickness="1"
-                    CornerRadius="{StaticResource ControlCornerRadius}">
+                    BorderThickness="1">
 
         </StackPanel>
     </StackPanel>
