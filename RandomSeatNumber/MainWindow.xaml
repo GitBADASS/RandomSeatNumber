@@ -9,31 +9,60 @@
     <Window.SystemBackdrop>
         <DesktopAcrylicBackdrop/>
     </Window.SystemBackdrop>
-    <NavigationView   x:Name="SideBar" 
-                      PaneDisplayMode="Left" 
-                      IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False"
-                      IsSettingsVisible="False"
-                      PaneTitle="RandomSN"
-                      SelectionChanged="NavigationView_SelectionChanged">
-        <!--侧边栏-->
-        <!--标题栏的控制区域影响到了侧栏按钮的点击，考虑解决-->
-        <NavigationView.MenuItems>
-            <NavigationViewItem Icon="Play" 
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border x:Name="AppTitleBar" 
+                Grid.Row="0"
+                Grid.Column="1" 
+                Height="{Binding ElementName=SideBar, Path=CompactPaneLength}"
+                VerticalAlignment="Stretch"
+                Canvas.ZIndex="1">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="12" Margin="12,0,0,0">
+                <Image Width="18" Source="ms-appx:///Assets/RandomSN.ico" />
+                <TextBlock x:Name="AppTitle" 
+                           Text="{x:Bind AppTitleBarText}" 
+                           VerticalAlignment="Top" 
+                           Style="{StaticResource CaptionTextBlockStyle}"/>
+                
+            </StackPanel>
+        </Border>
+
+        <NavigationView x:Name="SideBar" 
+                        Grid.Row="1" Grid.Column="1"
+                        PaneDisplayMode="Left" 
+                        IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False"
+                        IsSettingsVisible="False"
+                        PaneTitle="RandomSN"
+                        SelectionChanged="NavigationView_SelectionChanged"
+                        Canvas.ZIndex="0">
+            <!--侧边栏-->
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Play" 
                                 Content="随机生成" 
                                 Tag="Generation_Page"/>
-            <NavigationViewItem Icon="ViewAll" 
+                <NavigationViewItem Icon="ViewAll" 
                                 Content="座次配置" 
                                 Tag="SeatOrder_Page"/>
-            
-        </NavigationView.MenuItems>
 
-        <NavigationView.FooterMenuItems>
-            <NavigationViewItem Icon="Library" Content="开发信息" Tag="Information_Page"/>
-            <NavigationViewItem Icon="Setting" Content="设置" Tag="Information_Page"/>
-        </NavigationView.FooterMenuItems>
-        <Frame x:Name="contentFrame"/>
-        
-    </NavigationView>
-    
-   
+            </NavigationView.MenuItems>
+
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Icon="Library" Content="开发信息" Tag="Information_Page"/>
+                <NavigationViewItem Icon="Setting" Content="设置" Tag="Information_Page"/>
+            </NavigationView.FooterMenuItems>
+            <Frame x:Name="contentFrame"/>
+
+        </NavigationView>
+    </Grid>
+
 </Window>

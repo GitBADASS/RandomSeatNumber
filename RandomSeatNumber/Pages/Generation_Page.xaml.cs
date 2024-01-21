@@ -12,9 +12,11 @@ namespace RandomSeatNumber.Pages
     /// </summary>
     public sealed partial class Generation_Page : Page
     {
+        public string GeneratedNumber {  get; set; }
 
         public Generation_Page()
         {
+            GeneratedNumber = "TTTEST";
             this.InitializeComponent();
 
         }
