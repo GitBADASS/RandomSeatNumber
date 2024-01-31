@@ -16,13 +16,13 @@ namespace RandomSeatNumber.Generate
         /// <summary>
         /// 内容属性 包含策略中的所有组
         /// </summary>
-        internal List<Distract> Content { get; set; }
+        internal List<InitialDistract> Content { get; set; }
 
         /// <summary>
         /// 接受一个 `Distract` 集合
         /// </summary>
         /// <param name="content">传入一个集合，内容为所有组</param>
-        public Strategy(List<Distract> content)
+        public Strategy(List<InitialDistract> content)
         {
             Content = content;
         }

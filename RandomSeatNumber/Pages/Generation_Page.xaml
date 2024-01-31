@@ -23,10 +23,9 @@
             <toolkit:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xF594;" />
             </toolkit:SettingsCard.HeaderIcon>
-            <ComboBox x:Name="navigationLocation">
-                <ComboBoxItem Content="Left" />
-                <ComboBoxItem Content="Top" />
-            </ComboBox>
+            <Button x:Name="TestBtn"
+                    Content="Test" 
+                    Click="TestBtn_Click"/>
         </toolkit:SettingsCard>
     </StackPanel>
 </Page>

@@ -21,5 +21,9 @@ namespace RandomSeatNumber.Pages
 
         }
 
+        private void TestBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

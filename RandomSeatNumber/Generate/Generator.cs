@@ -8,6 +8,10 @@ namespace RandomSeatNumber.Generate
 {
     internal class Generator
     {
+        public static List<int[]> CreateSeatTableByDistracts(params InitialDistract[] distracts)
+        {
 
+            return new List<int[]>();
+        }
     }
 }

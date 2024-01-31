@@ -4,51 +4,40 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using System;
-using System.Linq;
+using Windows.ApplicationModel;
 using WinRT.Interop;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace RandomSeatNumber
 {
     public sealed partial class MainWindow : Window
     {
-        //当前窗口
-        private Microsoft.UI.Windowing.AppWindow CurrentAppWindow;
+        // 当前窗口
+        //private Microsoft.UI.Windowing.AppWindow CurrentAppWindow;
 
-        //标题栏文本
+        // 标题栏文本
         public string AppTitleBarText {  get; set; }
+
+        // 当前对象
+        public static MainWindow current;
 
         public MainWindow()
         {
-            //初始化控件
+            // 初始化控件
             this.InitializeComponent();
 
-            //设置为自定义标题栏
-            CurrentAppWindow = GetAppWindowForCurrentWindow();
-            var titleBar = CurrentAppWindow.TitleBar;
-            titleBar.ExtendsContentIntoTitleBar = true;
-            //this.SetTitleBar(AppTitleBar);
+            // 初始化 current 防止其值为空
+            current = this;
 
-            //设定亚克力背景材质
+            // 处理自定义标题栏
+            ProcessTheCustomTitleBar();
+
+            // 设定亚克力背景材质
             SystemBackdrop = new DesktopAcrylicBackdrop();
 
-            //设置标题文本
-            this.Title = "高一 12 班随机点名程序";
-
-            //默认导航到 Generation 页面
+            // 默认导航到 Generation 页面
             contentFrame.Navigate(typeof(Pages.Generation_Page), null, new EntranceNavigationTransitionInfo());// 导航
-            ((Microsoft.UI.Xaml.Controls.NavigationViewItem)SideBar.MenuItems[0]).IsSelected = true;// 在边栏选中
+            ((NavigationViewItem)SideBar.MenuItems[0]).IsSelected = true;// 在边栏选中导航项
 
-        }
-
-        //获得当前窗口
-        private Microsoft.UI.Windowing.AppWindow GetAppWindowForCurrentWindow()
-        {
-            IntPtr hWnd = WindowNative.GetWindowHandle(this);
-            WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-            return Microsoft.UI.Windowing.AppWindow.GetFromWindowId(wndId);
         }
 
         // 导航项更改事件，导航页面用
@@ -64,6 +53,18 @@ namespace RandomSeatNumber
                     contentFrame.Navigate(typeof(Pages.Information_Page));
                     break;
             }
+        }
+
+        private void ProcessTheCustomTitleBar()
+        {
+            // 设置为自定义标题栏
+            ExtendsContentIntoTitleBar = true;
+
+            // 设置标题栏文本
+            AppTitleBarText = AppInfo.Current.DisplayInfo.DisplayName;
+
+            // 设置标题栏按钮颜色
+            
         }
     }
 }
