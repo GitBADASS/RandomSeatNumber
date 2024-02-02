@@ -5,7 +5,6 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using Windows.ApplicationModel;
-using WinRT.Interop;
 
 namespace RandomSeatNumber
 {
@@ -17,16 +16,10 @@ namespace RandomSeatNumber
         // 标题栏文本
         public string AppTitleBarText {  get; set; }
 
-        // 当前对象
-        public static MainWindow current;
-
         public MainWindow()
         {
             // 初始化控件
             this.InitializeComponent();
-
-            // 初始化 current 防止其值为空
-            current = this;
 
             // 处理自定义标题栏
             ProcessTheCustomTitleBar();
@@ -35,13 +28,15 @@ namespace RandomSeatNumber
             SystemBackdrop = new DesktopAcrylicBackdrop();
 
             // 默认导航到 Generation 页面
-            contentFrame.Navigate(typeof(Pages.Generation_Page), null, new EntranceNavigationTransitionInfo());// 导航
+            contentFrame.Navigate(typeof(Pages.Generation_Page), null, new EntranceNavigationTransitionInfo());// 导航页面
             ((NavigationViewItem)SideBar.MenuItems[0]).IsSelected = true;// 在边栏选中导航项
 
+            // 初始化 current 防止其值为空
+            MainWindowHelpers.current = this;
         }
 
         // 导航项更改事件，导航页面用
-        private void NavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var SelectedItem = (NavigationViewItem)args.SelectedItem;
             switch ((String)SelectedItem.Tag)
@@ -64,7 +59,17 @@ namespace RandomSeatNumber
             AppTitleBarText = AppInfo.Current.DisplayInfo.DisplayName;
 
             // 设置标题栏按钮颜色
-            
+            switch (Application.Current.RequestedTheme)
+            {
+                case ApplicationTheme.Light:
+                    this.AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
+                    break;
+                case ApplicationTheme.Dark:
+                    this.AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
