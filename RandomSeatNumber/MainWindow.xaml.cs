@@ -41,9 +41,11 @@ namespace RandomSeatNumber
             var SelectedItem = (NavigationViewItem)args.SelectedItem;
             switch ((String)SelectedItem.Tag)
             {
+                // 生成页
                 case "Generation_Page":
                     contentFrame.Navigate(typeof(Pages.Generation_Page));
                     break;
+                // 信息页
                 case "Information_Page":
                     contentFrame.Navigate(typeof(Pages.Information_Page));
                     break;

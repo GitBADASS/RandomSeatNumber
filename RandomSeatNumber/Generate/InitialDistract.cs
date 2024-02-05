@@ -13,7 +13,7 @@ namespace RandomSeatNumber.Generate
         /// 组序
         /// 规定该组的序号
         /// </summary>
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         /// <summary>
         /// 行
@@ -46,10 +46,12 @@ namespace RandomSeatNumber.Generate
         /// <param name="blackList">黑名单</param>
         public InitialDistract(int rowLimition, int columnLimition, List<int[]> whitelist, List<int[]> blackList)
         {
+            #region Assignment
             RowLimition = rowLimition;
             ColumnLimition = columnLimition;
             WhiteList = whitelist;
-            BlackList = blackList;
+            BlackList = blackList; 
+            #endregion
         }
     }
 }

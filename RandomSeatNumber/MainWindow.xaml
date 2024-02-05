@@ -57,7 +57,7 @@
 
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Icon="Library" Content="开发信息" Tag="Information_Page"/>
-                <NavigationViewItem Icon="Setting" Content="设置" Tag="Information_Page"/>
+                <NavigationViewItem Icon="Setting" Content="设置" Tag="Settings_Page"/>
             </NavigationView.FooterMenuItems>
             <Frame x:Name="contentFrame"/>
 

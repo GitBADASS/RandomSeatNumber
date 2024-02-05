@@ -23,6 +23,8 @@
     <None Remove="Pages\Generation_Page.xaml" />
     <None Remove="Pages\Information_Page.xaml" />
     <None Remove="Pages\Info_Page.xaml" />
+    <None Remove="Pages\SeatOrder_Page.xaml" />
+    <None Remove="Pages\Settings_Page.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +53,16 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\SeatOrder_Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Settings_Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Information_Page.xaml">
