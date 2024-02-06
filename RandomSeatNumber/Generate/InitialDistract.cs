@@ -44,13 +44,14 @@ namespace RandomSeatNumber.Generate
         /// <param name="columnLimition">列数限制</param>
         /// <param name="whitelist">白名单</param>
         /// <param name="blackList">黑名单</param>
-        public InitialDistract(int rowLimition, int columnLimition, List<int[]> whitelist, List<int[]> blackList)
+        public InitialDistract(int ID, int rowLimition, int columnLimition, List<int[]> whitelist, List<int[]> blackList)
         {
             #region Assignment
             RowLimition = rowLimition;
             ColumnLimition = columnLimition;
             WhiteList = whitelist;
             BlackList = blackList; 
+            this.ID = ID; 
             #endregion
         }
     }
