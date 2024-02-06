@@ -1,6 +1,7 @@
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using System;
@@ -14,7 +15,7 @@ namespace RandomSeatNumber
         //private Microsoft.UI.Windowing.AppWindow CurrentAppWindow;
 
         // 标题栏文本
-        public string AppTitleBarText {  get; set; }
+        public string AppTitleBarText { get; set; }
 
         public MainWindow()
         {
@@ -33,6 +34,7 @@ namespace RandomSeatNumber
 
             // 初始化 current 防止其值为空
             MainWindowHelpers.current = this;
+
         }
 
         // 导航项更改事件，导航页面用

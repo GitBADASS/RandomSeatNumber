@@ -2,7 +2,7 @@
 
 namespace RandomSeatNumber.Generate
 {
-    internal class Generator
+    class Generator
     {
         /// <summary>
         /// 将初始的区加工为装载数组的集合
@@ -11,18 +11,19 @@ namespace RandomSeatNumber.Generate
         /// <returns></returns>
         public static List<int[]> CreateSeatTableByDistracts(params InitialDistract[] distracts)
         {
-            List<int[]> Result = null;
-            int[] item = new int[2];
+            List<int[]> Result = new();
 
             // 通过行列限制将数组初步生成
             foreach (var d in distracts)
             {
                 // 每一行
-                for (int i = 0; i <= d.RowLimition; i++)
+                for (int i = 1; i <= d.RowLimition; i++)
                 {
                     // 每一列
-                    for (int i1 = 0; i1 <= d.ColumnLimition; i1++)
+                    for (int i1 = 1; i1 <= d.ColumnLimition; i1++)
                     {
+                        int[] item = new int[2];  // 在每次循环时创建新的数组
+
                         item[0] = i;
                         item[1] = i1;
 
