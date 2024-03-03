@@ -12,20 +12,21 @@
 
     <StackPanel Padding="20" Spacing="20">
 
-        <StackPanel Height="300"
-                    HorizontalAlignment="Center"
+        <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <TextBlock Text="{x:Bind GeneratedNumber}"/>
-
+            <TextBlock x:Name="NumberTextBlock"
+                       Margin="100" TextAlignment="Center" 
+                       FontSize="50" FontWeight="Bold"
+                       Text="{x:Bind GeneratedNumber}"/>
         </StackPanel>
-
+        
         <toolkit:SettingsCard Header="Navigation style">
             <toolkit:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xF594;" />
+                <FontIcon Glyph="&#xECC8;" />
             </toolkit:SettingsCard.HeaderIcon>
-            <Button x:Name="TestBtn"
-                    Content="Test" 
-                    Click="TestBtn_Click"/>
+            <Button x:Name="Generate"
+                    Content="Test"
+                    Click="Generate_Btn_Click"/>
         </toolkit:SettingsCard>
     </StackPanel>
 </Page>

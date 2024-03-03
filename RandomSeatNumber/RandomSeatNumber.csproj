@@ -17,7 +17,14 @@
 	<ApplicationIcon>Assets\RandomSN.ico</ApplicationIcon>
 	<UseWindowsForms>False</UseWindowsForms>
 	<AssemblyName>RandomSN</AssemblyName>
+	<PackageIcon></PackageIcon>
+	<DefaultLanguage>zh-cn</DefaultLanguage>
+	<PackageCertificateThumbprint>0BA1EE7ECFF084225A68246AA2EC9299BC112A9E</PackageCertificateThumbprint>
+	<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="Assets\RandomSN.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Remove="hlt_x64.ico" />
     <None Remove="Pages\Generation_Page.xaml" />
@@ -28,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<Content Include="Assets\RandomSN.ico" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />

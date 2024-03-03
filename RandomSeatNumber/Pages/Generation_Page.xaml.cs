@@ -12,18 +12,35 @@ namespace RandomSeatNumber.Pages
     /// </summary>
     public sealed partial class Generation_Page : Page
     {
-        public string GeneratedNumber {  get; set; }
+        private string generatedNumber;
+        public string GeneratedNumber
+        {
+            get
+            {
+                return generatedNumber;
+            }
+
+            set
+            {
+                generatedNumber = value;
+
+                if(NumberTextBlock != null) 
+                {
+                    NumberTextBlock.Text = generatedNumber;
+                }
+            }
+        }
 
         public Generation_Page()
         {
-            GeneratedNumber = "TTTEST";
+            GeneratedNumber = "???";
             this.InitializeComponent();
 
         }
 
-        private void TestBtn_Click(object sender, RoutedEventArgs e)
+        private void Generate_Btn_Click(object sender, RoutedEventArgs e)
         {
-
+            GeneratedNumber = "SCSS";
         }
     }
 }

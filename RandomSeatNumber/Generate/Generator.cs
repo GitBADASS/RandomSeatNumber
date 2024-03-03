@@ -7,7 +7,7 @@ namespace RandomSeatNumber.Generate
         /// <summary>
         /// 将初始的区加工为装载数组的集合
         /// </summary>
-        /// <param name="distracts">传入初始区</param>
+        /// <param name="distracts">初始区</param>
         /// <returns></returns>
         public static List<int[]> CreateSeatTableByDistracts(params InitialDistract[] distracts)
         {

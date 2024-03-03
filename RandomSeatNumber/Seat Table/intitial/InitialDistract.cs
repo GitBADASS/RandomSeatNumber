@@ -34,7 +34,7 @@ namespace RandomSeatNumber.Generate
 
         /// <summary>
         /// 移除的座位，用于特殊情况与消除某座位的权重
-        /// </summary
+        /// </summary+
         public List<int[]> BlackList { get; set; }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace RandomSeatNumber.Generate
         {
             #region Assignment
             RowLimition = rowLimition;
-            ColumnLimition = columnLimition;
+            ColumnLimition = columnLimition;     
             WhiteList = whitelist;
             BlackList = blackList; 
             this.ID = ID; 
