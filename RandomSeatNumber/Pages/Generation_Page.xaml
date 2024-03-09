@@ -18,15 +18,37 @@
                        Margin="100" TextAlignment="Center" 
                        FontSize="50" FontWeight="Bold"
                        Text="{x:Bind GeneratedNumber}"/>
+            <TextBlock x:Name="MultipleNumber" />
         </StackPanel>
         
+        <!--单项生成卡片-->
         <toolkit:SettingsCard Header="Navigation style">
             <toolkit:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xECC8;" />
             </toolkit:SettingsCard.HeaderIcon>
             <Button x:Name="Generate"
-                    Content="Test"
+                    Content="生成"
                     Click="Generate_Btn_Click"/>
         </toolkit:SettingsCard>
+
+        <!--多项生成卡片-->
+        <toolkit:SettingsCard Header="Navigation style">
+            <toolkit:SettingsCard.HeaderIcon>
+                <FontIcon Glyph="&#xECC8;" />
+            </toolkit:SettingsCard.HeaderIcon>
+            <Button x:Name="MultiplyGenerate"
+                        Content="生成 5 个"
+                        Click="MultiplyGenerate_Click"/>
+        </toolkit:SettingsCard>
+
+        <!--声明卡片-->
+        <StackPanel Background="{StaticResource CardBackgroundFillColorDefault}"
+                    BorderThickness="1"
+                    BorderBrush="{StaticResource CardStrokeColorDefault}"
+                    CornerRadius="4">
+            <TextBlock Padding="10">
+                oioibbbioboiboibioboiboioioibbbioboiboibioboiboioioibbbioboiboibioboiboi
+            </TextBlock>
+        </StackPanel>
     </StackPanel>
 </Page>
