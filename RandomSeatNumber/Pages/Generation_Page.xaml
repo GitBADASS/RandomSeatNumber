@@ -9,46 +9,80 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <ScrollView>
+        <StackPanel Padding="20" Spacing="20">
+            
+            <!--生成结果显示区域-->
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <!--单个生成-->
+                <TextBlock x:Name="NumberTextBlock"
+                           Margin="50" TextAlignment="Center" 
+                           FontSize="50" FontWeight="Bold"
+                           Text="{x:Bind GeneratedNumber}"/>
 
-    <StackPanel Padding="20" Spacing="20">
+                <!--多个生成-->
+                <TextBlock x:Name="MultipleNumber"
+                           Margin="50" TextAlignment="Center" 
+                           FontSize="25" FontWeight="Bold"
+                           Text="请点击”多次生成”按钮"/>
+            </StackPanel>
+            
+            <!--单项生成卡片-->
+            <toolkit:SettingsCard Header="生成单个座位号">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xECC8;" />
+                </toolkit:SettingsCard.HeaderIcon>
+                <Button x:Name="Generate"
+                        Content="生成"
+                        Click="Generate_Btn_Click"/>
+            </toolkit:SettingsCard>
 
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <TextBlock x:Name="NumberTextBlock"
-                       Margin="100" TextAlignment="Center" 
-                       FontSize="50" FontWeight="Bold"
-                       Text="{x:Bind GeneratedNumber}"/>
-            <TextBlock x:Name="MultipleNumber" />
+            <!--多项生成卡片-->
+            <toolkit:SettingsCard Header="生成 5 个座位号">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xECAA;" />
+                </toolkit:SettingsCard.HeaderIcon>
+                <Button x:Name="MultiplyGenerate"
+                            Content="生成 5 次"
+                            Click="MultiplyGenerate_Click"/>
+            </toolkit:SettingsCard>
+
+            <!--声明卡片 临时-->
+            <StackPanel Background="{StaticResource CardBackgroundFillColorDefault}"
+                        BorderThickness="1"
+                        BorderBrush="{StaticResource CardStrokeColorDefault}"
+                        CornerRadius="4">
+                <RichTextBlock Padding="20">
+                    <Paragraph>
+                        <Bold FontSize="20">重要信息</Bold>
+                    </Paragraph>
+                    
+                    <Paragraph>
+                        <Run>
+                            本程序更新了随机生成的算法以及 UI 设计，但是由于开发时间不够充裕，大部分内容仍未开放。我们会尽力实现计划内的全部功能。
+                        </Run>
+                    </Paragraph>
+
+                    <Paragraph>
+                        <Run>
+                            “开发信息”页尚未开放，因此部分开发信息暂时寄存此处。
+                        </Run>
+                    </Paragraph>
+
+                    <Paragraph>
+                        <Run>
+                            算法更新内容：先前的算法是 3（组数：三组）× 6 || 7（排数：六排或七排，由组决定）× 1 || 2 || 3（列数：一列、二列或三列，由前述二者综合决定），公平性并不强，并且实际概率极为复杂。新算法暂将全班所有座位号（我们可能会有记错或者记不准的地方）存到一个集合中，以每人均等的概率抽取。目前的 UI 设计也比较简单并且欠缺美观，日后会改善。
+                        </Run>
+                    </Paragraph>
+
+                    <Paragraph>
+                        <Run>
+                            开发者：23 届 12 班 电教委员
+                        </Run>
+                    </Paragraph>
+                </RichTextBlock>
+            </StackPanel>
         </StackPanel>
-        
-        <!--单项生成卡片-->
-        <toolkit:SettingsCard Header="Navigation style">
-            <toolkit:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xECC8;" />
-            </toolkit:SettingsCard.HeaderIcon>
-            <Button x:Name="Generate"
-                    Content="生成"
-                    Click="Generate_Btn_Click"/>
-        </toolkit:SettingsCard>
-
-        <!--多项生成卡片-->
-        <toolkit:SettingsCard Header="Navigation style">
-            <toolkit:SettingsCard.HeaderIcon>
-                <FontIcon Glyph="&#xECC8;" />
-            </toolkit:SettingsCard.HeaderIcon>
-            <Button x:Name="MultiplyGenerate"
-                        Content="生成 5 个"
-                        Click="MultiplyGenerate_Click"/>
-        </toolkit:SettingsCard>
-
-        <!--声明卡片-->
-        <StackPanel Background="{StaticResource CardBackgroundFillColorDefault}"
-                    BorderThickness="1"
-                    BorderBrush="{StaticResource CardStrokeColorDefault}"
-                    CornerRadius="4">
-            <TextBlock Padding="10">
-                oioibbbioboiboibioboiboioioibbbioboiboibioboiboioioibbbioboiboibioboiboi
-            </TextBlock>
-        </StackPanel>
-    </StackPanel>
+    </ScrollView>
 </Page>

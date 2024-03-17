@@ -4,7 +4,6 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using System;
-using Windows.ApplicationModel;
 
 namespace RandomSeatNumber
 {
@@ -33,7 +32,6 @@ namespace RandomSeatNumber
 
             // 初始化 current 防止其值为空
             MainWindowHelpers.current = this;
-
         }
 
         // 导航项更改事件，导航页面用
@@ -59,7 +57,7 @@ namespace RandomSeatNumber
             ExtendsContentIntoTitleBar = true;
 
             // 设置标题栏文本
-            AppTitleBarText = AppInfo.Current.DisplayInfo.DisplayName;
+            AppTitleBarText = "RSN 随机座号程序";
 
             // 设置标题栏按钮颜色
             switch (Application.Current.RequestedTheme)

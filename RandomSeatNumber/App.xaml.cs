@@ -1,6 +1,11 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using RandomSeatNumber.Generate;
+using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,16 +28,25 @@ namespace RandomSeatNumber
             this.InitializeComponent();
         }
 
+
+
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            // 防止多开
+            _ = new Mutex(true, System.Diagnostics.Process.GetCurrentProcess().ProcessName, out bool isAppRunning);
+
+            if (!isAppRunning)
+            {
+                Environment.Exit(0); 
+            }
+
             m_window = new MainWindow();
 
             m_window.Activate();
         }
-
     }
 }
