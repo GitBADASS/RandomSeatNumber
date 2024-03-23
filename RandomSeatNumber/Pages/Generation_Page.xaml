@@ -13,23 +13,45 @@
         <StackPanel Padding="20" Spacing="20">
             
             <!--生成结果显示区域-->
-            <StackPanel HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+            <Grid ColumnSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
                 <!--单个生成-->
-                <TextBlock x:Name="NumberTextBlock"
-                           Margin="50" TextAlignment="Center" 
-                           FontSize="50" FontWeight="Bold"
-                           Text="{x:Bind GeneratedNumber}"/>
+                <StackPanel Grid.Row="0" Grid.Column="0"
+                            Background="{StaticResource CardBackgroundFillColorDefault}"
+                            BorderThickness="1"
+                            BorderBrush="{ThemeResource ResultRegionBorder}"
+                            CornerRadius="5 0 0 5">
+                    <TextBlock x:Name="NumberTextBlock"
+                               TextAlignment="Center"
+                               FontSize="50" FontWeight="Bold"
+                               Text="{x:Bind GeneratedNumber}"/>
+                </StackPanel>
 
                 <!--多个生成-->
-                <TextBlock x:Name="MultipleNumber"
-                           Margin="50" TextAlignment="Center" 
-                           FontSize="25" FontWeight="Bold"
-                           Text="请点击”多次生成”按钮"/>
-            </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1" 
+                            Background="{StaticResource CardBackgroundFillColorDefault}"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource CardStrokeColorDefault}"
+                            CornerRadius="0 5 5 0">
+                    <TextBlock x:Name="MultipleNumber"
+                               TextAlignment="Center" 
+                               FontSize="25" FontWeight="Bold"
+                               Text="请点击”多次生成”按钮"/>
+                </StackPanel>
+                
+            </Grid>
             
             <!--单项生成卡片-->
-            <toolkit:SettingsCard Header="生成单个座位号">
+            <toolkit:SettingsCard Header="生成单个座位号"
+                                  Description="点击右侧按钮可以随机生成一个座位号。">
                 <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xECC8;" />
                 </toolkit:SettingsCard.HeaderIcon>
@@ -39,7 +61,8 @@
             </toolkit:SettingsCard>
 
             <!--多项生成卡片-->
-            <toolkit:SettingsCard Header="生成 5 个座位号">
+            <toolkit:SettingsCard Header="生成 5 个座位号"
+                                  Description="点击右侧按钮可以随机生成 5 个座位号。在将来的版本，我们会为用户提供自定义生成数量的可能。">
                 <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xECAA;" />
                 </toolkit:SettingsCard.HeaderIcon>
@@ -47,6 +70,15 @@
                             Content="生成 5 次"
                             Click="MultiplyGenerate_Click"/>
             </toolkit:SettingsCard>
+
+            <!--<toolkit:SettingsCard Header="昼夜颜色模式">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xECAA;" />
+                </toolkit:SettingsCard.HeaderIcon>
+                <Button x:Name="MultiplyGenerate"
+                            Content="生成 5 次"
+                            Click="MultiplyGenerate_Click"/>
+            </toolkit:SettingsCard>-->
 
             <!--声明卡片 临时-->
             <StackPanel Background="{StaticResource CardBackgroundFillColorDefault}"

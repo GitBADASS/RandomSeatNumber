@@ -8,7 +8,7 @@
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
-            <!--修改主题颜色-->
+            <!--修改主题颜色--><!--
             <Color x:Key="SystemAccentColor">#EC7063</Color>
             <Color x:Key="SystemAccentColorDark1">#E74C3C</Color>
             <Color x:Key="SystemAccentColorDark2">#922B21</Color>
@@ -16,7 +16,7 @@
             <Color x:Key="SystemAccentColorLight1">#E6B0AA</Color>
             <Color x:Key="SystemAccentColorLight2">#F2D7D5</Color>
             <Color x:Key="SystemAccentColorLight3">#F9EBEA</Color>
-            <!--修改主题颜色结束-->
+            --><!--修改主题颜色结束-->
 
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
@@ -24,6 +24,26 @@
 
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            
+            <!--创建显示结果边框样式-->
+            <ResourceDictionary.ThemeDictionaries>
+                <!--亮色-->
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ResultRegionBorder" Color="{ThemeResource SystemAccentColorLight2}"/>
+                </ResourceDictionary>
+                
+                <!--暗色-->
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="ResultRegionBorder" Color="{ThemeResource SystemAccentColorDark2}"/>
+                </ResourceDictionary>
+                
+                <!--高对比度-->
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="ResultRegionBorder" Color="{ThemeResource SystemAccentColorDark2}"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <!--创建显示结果边框样式结束-->
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
