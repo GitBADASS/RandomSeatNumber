@@ -24,28 +24,37 @@
                 </Grid.ColumnDefinitions>
                 
                 <!--单个生成-->
-                <StackPanel Grid.Row="0" Grid.Column="0"
-                            Background="{StaticResource CardBackgroundFillColorDefault}"
+                <Grid Grid.Row="0" Grid.Column="0"
                             BorderThickness="1"
                             BorderBrush="{ThemeResource ResultRegionBorder}"
                             CornerRadius="5 0 0 5">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="{ThemeResource ResultRegionBackground}" Offset="0.8" />
+                            <GradientStop Color="{ThemeResource CardBackgroundFillColorDefault}" Offset="1" />
+                        </LinearGradientBrush>
+                    </Grid.Background>
                     <TextBlock x:Name="NumberTextBlock"
-                               TextAlignment="Center"
+                               TextWrapping="WrapWholeWords"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
                                FontSize="50" FontWeight="Bold"
                                Text="{x:Bind GeneratedNumber}"/>
-                </StackPanel>
+                </Grid>
 
                 <!--多个生成-->
-                <StackPanel Grid.Row="0" Grid.Column="1" 
+                <Grid Grid.Row="0" Grid.Column="1" 
                             Background="{StaticResource CardBackgroundFillColorDefault}"
                             BorderThickness="1"
                             BorderBrush="{StaticResource CardStrokeColorDefault}"
                             CornerRadius="0 5 5 0">
                     <TextBlock x:Name="MultipleNumber"
-                               TextAlignment="Center" 
+                               TextWrapping="WrapWholeWords"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
                                FontSize="25" FontWeight="Bold"
                                Text="请点击”多次生成”按钮"/>
-                </StackPanel>
+                </Grid>
                 
             </Grid>
             

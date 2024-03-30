@@ -58,6 +58,7 @@ namespace RandomSeatNumber
 
             // 设置标题栏文本
             AppTitleBarText = "RSN 随机座号程序";
+            Title = "RSN 随机座号程序";
 
             // 设置标题栏按钮颜色
             switch (Application.Current.RequestedTheme)
