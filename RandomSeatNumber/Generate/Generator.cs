@@ -51,7 +51,7 @@ namespace RandomSeatNumber.Generate
                         int[] item = { d.ID, b[0], b[1] };
 
                         // 移除这个座号
-                        Result.Remove(item);
+                        Result.RemoveAll(e => e[0] == item[0] && e[1] == item[1] && e[2] == item[2]);
 
                         // 完成，（若 黑名单座号集合 未遍历完全则）进行下一个黑名单座号的移除
                     } 

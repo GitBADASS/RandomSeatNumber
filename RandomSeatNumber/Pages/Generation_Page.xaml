@@ -25,15 +25,10 @@
                 
                 <!--单个生成-->
                 <Grid Grid.Row="0" Grid.Column="0"
-                            BorderThickness="1"
-                            BorderBrush="{ThemeResource ResultRegionBorder}"
-                            CornerRadius="5 0 0 5">
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="{ThemeResource ResultRegionBackground}" Offset="0.8" />
-                            <GradientStop Color="{ThemeResource CardBackgroundFillColorDefault}" Offset="1" />
-                        </LinearGradientBrush>
-                    </Grid.Background>
+                      BorderThickness="1"
+                      BorderBrush="{ThemeResource ResultRegionBorder}"
+                      Background="{ThemeResource ResultRegionBackground}"
+                      CornerRadius="5 0 0 5">
                     <TextBlock x:Name="NumberTextBlock"
                                TextWrapping="WrapWholeWords"
                                HorizontalAlignment="Center"
@@ -44,10 +39,10 @@
 
                 <!--多个生成-->
                 <Grid Grid.Row="0" Grid.Column="1" 
-                            Background="{StaticResource CardBackgroundFillColorDefault}"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource CardStrokeColorDefault}"
-                            CornerRadius="0 5 5 0">
+                      Background="{StaticResource CardBackgroundFillColorDefault}"
+                      BorderThickness="1"
+                      BorderBrush="{StaticResource CardStrokeColorDefault}"
+                      CornerRadius="0 5 5 0">
                     <TextBlock x:Name="MultipleNumber"
                                TextWrapping="WrapWholeWords"
                                TextAlignment="Center"
@@ -98,7 +93,13 @@
                     <Paragraph>
                         <Bold FontSize="20">重要信息</Bold>
                     </Paragraph>
-                    
+
+                    <Paragraph>
+                        <Run>
+                            本程序更新了随机生成的算法以及 UI 设计，但是由于开发时间不够充裕，大部分内容仍未开放。我们会尽力实现计划内的全部功能。
+                        </Run>
+                    </Paragraph>
+
                     <Paragraph>
                         <Run>
                             本程序更新了随机生成的算法以及 UI 设计，但是由于开发时间不够充裕，大部分内容仍未开放。我们会尽力实现计划内的全部功能。

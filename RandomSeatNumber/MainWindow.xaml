@@ -28,7 +28,7 @@
                 VerticalAlignment="Stretch"
                 Canvas.ZIndex="1">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="12" Margin="12,0,0,0">
-                <Image Width="18" Source="/Assets/RandomSN.ico" />
+                <Image Width="18" Source="ms-appx:///Assets/RandomSN.ico" />
                 <TextBlock x:Name="AppTitle" 
                            VerticalAlignment="Center"
                            Text="{x:Bind AppTitleBarText}" 

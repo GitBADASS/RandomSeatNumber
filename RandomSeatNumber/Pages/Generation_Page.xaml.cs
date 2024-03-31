@@ -48,21 +48,30 @@ namespace RandomSeatNumber.Pages
              */
 
             // 第一区
-            List<int[]> BlackList = new List<int[]>
+            // 删除座号考虑一种可以直接删除整排或整列的方法
+            List<int[]> BlackList_1_2 = new List<int[]>
+            {
+                new int[] { 7, 1 },
+                new int[] { 7, 2 },
+                new int[] { 7, 3 },
+            };
+
+            List<int[]> BlackList_3 = new List<int[]>
             {
                 new int[] { 7, 1 },
                 new int[] { 7, 2 }
             };
+
             InitialDistract distract1 = new InitialDistract(
-                1, 7, 3, null, BlackList);
+                1, 7, 3, null, BlackList_1_2);
 
             // 第二区
             InitialDistract distract2 = new InitialDistract(
-                2, 6, 3, null, null);
+                2, 6, 3, null, BlackList_1_2);
 
             // 第三区
             InitialDistract distract3 = new InitialDistract(
-                3, 6, 3, null, null);
+                3, 6, 3, null, BlackList_3);
 
             // 生成初始座次表
             SeatTable = Generator.CreateSeatTableByDistracts(distract1, distract2, distract3);
