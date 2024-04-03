@@ -129,5 +129,10 @@ namespace RandomSeatNumber.Pages
 
             return DistrictNumber + ", " + RowNumber + ", " + ColumnNumber;
         }
+
+        private void MultiplyGenerate_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // 如果长度超过 5，在 infobar 中做相应提示并限制输入
+        }
     }
 }
