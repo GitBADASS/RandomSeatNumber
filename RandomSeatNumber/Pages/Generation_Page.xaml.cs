@@ -19,6 +19,11 @@ namespace RandomSeatNumber.Pages
         public List<int[]> SeatTable; // 临时内容
 
         Random Random = new Random(); // 临时内容
+
+        private int currentGenerateTime = 1;
+
+        private int newGenerateTime;
+
         public string GeneratedNumber
         {
             get
@@ -85,31 +90,33 @@ namespace RandomSeatNumber.Pages
              * 暂时采取硬编码，往后需要更改
              */
 
-            // 随机抽取序数
-            int[] RandomSeatNumber = GetRandomSeatNumber();
-
-            // 转为字符串
-            GeneratedNumber = TransformToString(RandomSeatNumber);
-        }
-
-        private void MultiplyGenerate_Click(object sender, RoutedEventArgs e)
-        {
+            // 定义结果字符串
             string Result = "";
-            MultipleNumber.Text = Result;
 
-            for (int i = 1; i <= 5; i++)
+            // 对结果字符串进行相关操作
+            // 如果生成次数不等于 1，循环搭建多次生成结果
+            if (currentGenerateTime != 1)
             {
-                if(i != 5)
+                // 搭建多次生成结果字符串
+                for (int i = 1; i <= currentGenerateTime; i++)
                 {
-                    Result += TransformToString(GetRandomSeatNumber()) + " 与 ";
-                }
-                else
-                {
-                    Result += TransformToString(GetRandomSeatNumber());
-                }
+                    if (i != currentGenerateTime)
+                    {
+                        Result += TransformToString(GetRandomSeatNumber()) + " 与 ";
+                    }
+                    else
+                    {
+                        Result += TransformToString(GetRandomSeatNumber());
+                    }
+                } 
+            } else
+            {
+                // 如果生成次数为 1，只需生成一次
+                Result = TransformToString(GetRandomSeatNumber());
             }
 
-            MultipleNumber.Text = Result;
+            // 将文本覆盖到显示结果的控件
+            NumberTextBlock.Text = Result;
         }
 
         private int[] GetRandomSeatNumber()
@@ -130,9 +137,55 @@ namespace RandomSeatNumber.Pages
             return DistrictNumber + ", " + RowNumber + ", " + ColumnNumber;
         }
 
-        private void MultiplyGenerate_TextChanged(object sender, TextChangedEventArgs e)
+        // 应用用户输入的生成次数
+
+        private void NumberOfGenerateTime_Input_LostFocus(object sender, RoutedEventArgs e)
         {
-            // 如果长度超过 5，在 infobar 中做相应提示并限制输入
+            // 将生成结果转为 int，并赋值给 newGenerateTime
+            bool result = int.TryParse(NumberOfGenerateTime_Input.Text, out newGenerateTime);
+
+            // 如果符合“全部为数字字符且该数字的值不超过 100”的条件
+            if (result && newGenerateTime > 0 && newGenerateTime <= 100)
+            {
+                // 应用数值
+                currentGenerateTime = newGenerateTime;
+
+                // 通知用户修改成功
+                ShowNotification("成功修改", 
+                                 "你已经成功修改生成次数为 " + currentGenerateTime + " 次", 
+                                 InfoBarSeverity.Success);
+            }
+            // 如果不符合条件
+            else
+            {
+                // newGenerateTime 被赋值为 0，currentGenerateTime 不受影响
+
+                // 可能是因为用户输入了非数字字符
+                if (!result)
+                {
+                    ShowNotification("无效数字", "你输入的内容可能包含非阿拉伯数字字符", InfoBarSeverity.Warning);
+                }
+                // 如果通过了上面的判断，则进行对数字数值问题的排查
+                // 可能是数值过大
+                else if (newGenerateTime > 100 || newGenerateTime < 0)
+                {
+                    ShowNotification("极端数值", "你输入的数值可能并不在允许的范围内，请输入 1~100 内的数字", InfoBarSeverity.Warning);
+                }
+            }
+        }
+
+        private void ShowNotification(string title, string message, InfoBarSeverity severity)
+        {
+            if(InforBar.IsOpen)
+            {
+                InforBar.IsOpen = false;
+            }
+
+            InforBar.Title = title;
+            InforBar.Message = message;
+            InforBar.Severity = severity;
+
+            InforBar.IsOpen = true;
         }
     }
 }

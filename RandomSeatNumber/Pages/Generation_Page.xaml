@@ -11,7 +11,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <ScrollView>
         <StackPanel Padding="20" Spacing="20">
-            
             <!--生成结果显示区域-->
             <Grid ColumnSpacing="20">
                 <Grid.RowDefinitions>
@@ -27,13 +26,11 @@
                 <Grid Grid.Row="0" Grid.Column="0"
                       BorderThickness="1"
                       BorderBrush="{ThemeResource ResultRegionBorder}"
-                      Background="{ThemeResource ResultRegionBackground}"
-                      CornerRadius="5 0 0 5">
+                      Background="{ThemeResource ResultRegionBackground}">
                     <TextBlock x:Name="NumberTextBlock"
                                TextWrapping="WrapWholeWords"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               FontSize="50" FontWeight="Bold"
                                Text="{x:Bind GeneratedNumber}"/>
                 </Grid>
 
@@ -41,13 +38,11 @@
                 <Grid Grid.Row="0" Grid.Column="1" 
                       Background="{StaticResource CardBackgroundFillColorDefault}"
                       BorderThickness="1"
-                      BorderBrush="{StaticResource CardStrokeColorDefault}"
-                      CornerRadius="0 5 5 0">
+                      BorderBrush="{StaticResource CardStrokeColorDefault}">
                     <TextBlock x:Name="MultipleNumber"
                                TextWrapping="WrapWholeWords"
                                TextAlignment="Center"
                                VerticalAlignment="Center"
-                               FontSize="25" FontWeight="Bold"
                                Text="请点击”多次生成”按钮"/>
                 </Grid>
                 
@@ -64,16 +59,30 @@
                         Click="Generate_Btn_Click"/>
             </toolkit:SettingsCard>
 
+            <!--选择是否去重的卡片-->
+            <toolkit:SettingsCard Header="生成 5 个座位号"
+                                  Description="点击右侧按钮可以随机生成 5 个座位号。在将来的版本，我们会为用户提供自定义生成数量的可能。">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xECAA;" />
+                </toolkit:SettingsCard.HeaderIcon>
+                <CheckBox/>
+            </toolkit:SettingsCard>
+
             <!--选择生成次数的卡片-->
             <toolkit:SettingsCard Header="生成 5 个座位号"
                                   Description="点击右侧按钮可以随机生成 5 个座位号。在将来的版本，我们会为用户提供自定义生成数量的可能。">
                 <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xECAA;" />
                 </toolkit:SettingsCard.HeaderIcon>
-                <TextBox x:Name="MultiplyGenerate"
+                <TextBox x:Name="NumberOfGenerateTime_Input"
                          PlaceholderText="键入生成次数"
-                         TextChanged="MultiplyGenerate_TextChanged"/>
+                         LostFocus="NumberOfGenerateTime_Input_LostFocus"/>
             </toolkit:SettingsCard>
+            
+            
+            <!--生成次数修改的提示-->
+            <InfoBar x:Name="InforBar"
+                     IsOpen="False"/>
 
             <!--<toolkit:SettingsCard Header="昼夜颜色模式">
                 <toolkit:SettingsCard.HeaderIcon>
