@@ -10,7 +10,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <ScrollView>
-        <StackPanel Padding="20" Spacing="20">
+        <StackPanel Padding="20" Spacing="20"
+                    HorizontalAlignment="Stretch">
             <!--生成结果显示区域-->
             <Grid ColumnSpacing="20">
                 <Grid.RowDefinitions>
@@ -18,39 +19,54 @@
                 </Grid.RowDefinitions>
                 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
                 <!--单个生成-->
+                <Button VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        BorderThickness="1"
+                        BorderBrush="{ThemeResource ResultRegionBorder}"
+                        Background="{ThemeResource ResultRegionBackground}"
+                        Click="Generate_Btn_Click">
+                    <!--TODO: 考虑给用户提供该区域点击是否有效的设置，暂且的解决方案是把 Click 设为 null-->
+                    <!--TODO: 考虑将可滚动区域设为不可点击的区域-->
                 <Grid Grid.Row="0" Grid.Column="0"
-                      BorderThickness="1"
-                      BorderBrush="{ThemeResource ResultRegionBorder}"
-                      Background="{ThemeResource ResultRegionBackground}">
-                    <TextBlock x:Name="NumberTextBlock"
-                               TextWrapping="WrapWholeWords"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Text="{x:Bind GeneratedNumber}"/>
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch">
+                    <ScrollViewer>
+                        <TextBlock x:Name="NumberTextBlock"
+                                   FontSize="50"
+                                   FontWeight="ExtraBold"
+                                   TextWrapping="WrapWholeWords"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="{x:Bind GeneratedNumber}"/>
+                    </ScrollViewer>
                 </Grid>
+                </Button>
 
-                <!--多个生成-->
+                <!--生成历史-->
                 <Grid Grid.Row="0" Grid.Column="1" 
+                      CornerRadius="5"
                       Background="{StaticResource CardBackgroundFillColorDefault}"
                       BorderThickness="1"
                       BorderBrush="{StaticResource CardStrokeColorDefault}">
-                    <TextBlock x:Name="MultipleNumber"
+                    <ScrollViewer>
+                        <TextBlock x:Name="HistoryOfGenerated"
                                TextWrapping="WrapWholeWords"
                                TextAlignment="Center"
                                VerticalAlignment="Center"
-                               Text="请点击”多次生成”按钮"/>
+                               Text="100 次生成历史"/>
+                    </ScrollViewer>
                 </Grid>
                 
             </Grid>
             
             <!--生成座位号的卡片-->
             <toolkit:SettingsCard Header="生成单个座位号"
-                                  Description="点击右侧按钮可以随机生成一个座位号。">
+                                  Description="点击右侧按钮可以随机生成座位号。">
                 <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xECC8;" />
                 </toolkit:SettingsCard.HeaderIcon>
@@ -59,18 +75,9 @@
                         Click="Generate_Btn_Click"/>
             </toolkit:SettingsCard>
 
-            <!--选择是否去重的卡片-->
-            <toolkit:SettingsCard Header="生成 5 个座位号"
-                                  Description="点击右侧按钮可以随机生成 5 个座位号。在将来的版本，我们会为用户提供自定义生成数量的可能。">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xECAA;" />
-                </toolkit:SettingsCard.HeaderIcon>
-                <CheckBox/>
-            </toolkit:SettingsCard>
-
             <!--选择生成次数的卡片-->
-            <toolkit:SettingsCard Header="生成 5 个座位号"
-                                  Description="点击右侧按钮可以随机生成 5 个座位号。在将来的版本，我们会为用户提供自定义生成数量的可能。">
+            <toolkit:SettingsCard Header="生成多个座位号"
+                                  Description="在右侧输入需要的生成次数，并点击上方按钮生成。输入的数值需要在 1~100 之内。">
                 <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xECAA;" />
                 </toolkit:SettingsCard.HeaderIcon>
@@ -78,8 +85,20 @@
                          PlaceholderText="键入生成次数"
                          LostFocus="NumberOfGenerateTime_Input_LostFocus"/>
             </toolkit:SettingsCard>
-            
-            
+
+            <Expander Header="详细生成配置"
+                      HorizontalAlignment="Stretch">
+                <!--选择是否去重的卡片-->
+                <toolkit:SettingsCard Header="是否去重"
+                                      Description="在右侧选择是否要去除重复生成的座号。">
+                    <toolkit:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE716;" />
+                    </toolkit:SettingsCard.HeaderIcon>
+                    <CheckBox x:Name="Distinct"
+                              Content="是否去重"/>
+                </toolkit:SettingsCard>
+            </Expander>
+
             <!--生成次数修改的提示-->
             <InfoBar x:Name="InforBar"
                      IsOpen="False"/>

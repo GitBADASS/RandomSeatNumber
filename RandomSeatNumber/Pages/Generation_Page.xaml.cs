@@ -18,11 +18,19 @@ namespace RandomSeatNumber.Pages
 
         public List<int[]> SeatTable; // 临时内容
 
+        public List<int[]> DistinctSeatTable; // 临时内容
+
         Random Random = new Random(); // 临时内容
 
         private int currentGenerateTime = 1;
 
         private int newGenerateTime;
+
+        private string intitialHistory;
+
+        private string[] historyInArrays;
+
+        private int generatedTimes;
 
         public string GeneratedNumber
         {
@@ -80,7 +88,9 @@ namespace RandomSeatNumber.Pages
 
             // 生成初始座次表
             SeatTable = Generator.CreateSeatTableByDistracts(distract1, distract2, distract3);
+            DistinctSeatTable = SeatTable;
 
+            intitialHistory = HistoryOfGenerated.Text;
         }
 
         private void Generate_Btn_Click(object sender, RoutedEventArgs e)
@@ -92,29 +102,77 @@ namespace RandomSeatNumber.Pages
 
             // 定义结果字符串
             string Result = "";
+            string ResultOfHistory = "";
+
+            if(HistoryOfGenerated.Text == intitialHistory)
+            {
+                HistoryOfGenerated.Text = "";
+            }
+
+            if(generatedTimes > 100)
+            {
+                generatedTimes = 0;
+                // TODO: 生成历史会直接清空，考虑把最先的几个挤出去而不是清空（可能的实现方法：除去头 currentGenerateTime 个内容。
+                // 或者换用 ListView 表示而不是 TextBlock。
+                historyInArrays = HistoryOfGenerated.Text.Split('\n');
+                for (global::System.Int32 i = currentGenerateTime - 1; i < historyInArrays.Length; i++)
+                {
+                    ResultOfHistory += historyInArrays[i] + "\n";
+                }
+                HistoryOfGenerated.Text = ResultOfHistory;
+            }
 
             // 对结果字符串进行相关操作
             // 如果生成次数不等于 1，循环搭建多次生成结果
-            if (currentGenerateTime != 1)
+            if ((bool)!Distinct.IsChecked)
             {
-                // 搭建多次生成结果字符串
-                for (int i = 1; i <= currentGenerateTime; i++)
+                if (currentGenerateTime != 1)
                 {
-                    if (i != currentGenerateTime)
+                    // 搭建多次生成结果字符串
+                    for (int i = 1; i <= currentGenerateTime; i++)
                     {
-                        Result += TransformToString(GetRandomSeatNumber()) + " 与 ";
+                        if (i != currentGenerateTime)
+                        {
+                            Result += TransformToString(GetRandomSeatNumber()) + "\n";
+                        }
+                        else
+                        {
+                            Result += TransformToString(GetRandomSeatNumber());
+                        }
                     }
-                    else
-                    {
-                        Result += TransformToString(GetRandomSeatNumber());
-                    }
+                }
+                else
+                {
+                    // 如果生成次数为 1，只需生成一次
+                    Result = TransformToString(GetRandomSeatNumber());
                 } 
-            } else
+            }
+            else
             {
-                // 如果生成次数为 1，只需生成一次
-                Result = TransformToString(GetRandomSeatNumber());
+                if (currentGenerateTime != 1)
+                {
+                    // 搭建多次生成结果字符串
+                    for (int i = 1; i <= currentGenerateTime; i++)
+                    {
+                        if (i != currentGenerateTime)
+                        {
+                            Result += TransformToString(GetDistinctRandomSeatNumber()) + "\n";
+                        }
+                        else
+                        {
+                            Result += TransformToString(GetDistinctRandomSeatNumber());
+                        }
+                    }
+                }
+                else
+                {
+                    // 如果生成次数为 1，只需生成一次
+                    Result = TransformToString(GetDistinctRandomSeatNumber());
+                }
             }
 
+            HistoryOfGenerated.Text += Result + "\n";
+            generatedTimes += currentGenerateTime;
             // 将文本覆盖到显示结果的控件
             NumberTextBlock.Text = Result;
         }
@@ -124,6 +182,19 @@ namespace RandomSeatNumber.Pages
             // 随机抽取序数
             int RandomOrder = (int)Random.NextInt64(0, SeatTable.Count);
             int[] RandomSeatNumber = SeatTable[RandomOrder];
+            return RandomSeatNumber;
+        }
+        
+        private int[] GetDistinctRandomSeatNumber()
+        {
+            if(DistinctSeatTable.Count <= 0)
+            {
+                DistinctSeatTable.AddRange(SeatTable);
+            }
+            // 随机抽取序数
+            int RandomOrder = (int)Random.NextInt64(0, DistinctSeatTable.Count);
+            int[] RandomSeatNumber = DistinctSeatTable[RandomOrder];
+            DistinctSeatTable.RemoveAll(e => e == RandomSeatNumber);
             return RandomSeatNumber;
         }
 

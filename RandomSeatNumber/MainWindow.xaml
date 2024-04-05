@@ -46,17 +46,20 @@
             <!--侧边栏-->
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Play" 
-                                Content="随机生成" 
-                                Tag="Generation_Page"/>
+                                    Content="随机生成" 
+                                    Tag="Generation_Page"/>
                 <NavigationViewItem Icon="ViewAll" 
-                                Content="座次配置" 
-                                Tag="SeatOrder_Page"/>
+                                    Content="座次配置" 
+                                    Tag="SeatOrder_Page"
+                                    IsEnabled="False"/>
 
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Icon="Library" Content="开发信息" Tag="Information_Page"/>
-                <NavigationViewItem Icon="Setting" Content="设置" Tag="Settings_Page"/>
+                <NavigationViewItem Icon="Library" Content="开发信息" Tag="Information_Page"
+                                    IsEnabled="False"/>
+                <NavigationViewItem Icon="Setting" Content="设置" Tag="Settings_Page"
+                                    IsEnabled="False"/>
             </NavigationView.FooterMenuItems>
             <Frame x:Name="contentFrame"/>
 
