@@ -35,12 +35,13 @@
                 <Grid Grid.Row="0" Grid.Column="0"
                       VerticalAlignment="Stretch"
                       HorizontalAlignment="Stretch">
-                    <ScrollViewer>
+                    <ScrollViewer
+                        HorizontalAlignment="Stretch">
                         <TextBlock x:Name="NumberTextBlock"
                                    FontSize="50"
                                    FontWeight="ExtraBold"
                                    TextWrapping="WrapWholeWords"
-                                   HorizontalAlignment="Center"
+                                   HorizontalAlignment="Stretch"
                                    VerticalAlignment="Center"
                                    Text="{x:Bind GeneratedNumber}"/>
                     </ScrollViewer>
@@ -54,12 +55,18 @@
                       BorderThickness="1"
                       BorderBrush="{StaticResource CardStrokeColorDefault}">
                     <ScrollViewer>
-                        <TextBlock x:Name="HistoryOfGenerated"
-                               TextWrapping="WrapWholeWords"
-                               TextAlignment="Center"
-                               VerticalAlignment="Center"
-                               Text="100 次生成历史"/>
+                        <Grid>
+                            <TextBlock x:Name="HistoryOfGenerated"
+                                       TextWrapping="WrapWholeWords"
+                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="100 次生成历史"/>
+                        </Grid>
                     </ScrollViewer>
+                    <CommandBar DefaultLabelPosition="Right">
+                        <AppBarButton Icon="Delete" Label="清空历史" 
+                                      Click="ClearHistory_Click"/>
+                    </CommandBar>
                 </Grid>
                 
             </Grid>
@@ -86,7 +93,7 @@
                          LostFocus="NumberOfGenerateTime_Input_LostFocus"/>
             </toolkit:SettingsCard>
 
-            <Expander Header="详细生成配置"
+            <Expander Header="去重设置"
                       HorizontalAlignment="Stretch">
                 <!--选择是否去重的卡片-->
                 <toolkit:SettingsCard Header="是否去重"

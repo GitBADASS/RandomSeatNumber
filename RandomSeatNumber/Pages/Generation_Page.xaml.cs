@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using RandomSeatNumber.Generate;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -115,7 +116,7 @@ namespace RandomSeatNumber.Pages
                 // TODO: 生成历史会直接清空，考虑把最先的几个挤出去而不是清空（可能的实现方法：除去头 currentGenerateTime 个内容。
                 // 或者换用 ListView 表示而不是 TextBlock。
                 historyInArrays = HistoryOfGenerated.Text.Split('\n');
-                for (global::System.Int32 i = currentGenerateTime - 1; i < historyInArrays.Length; i++)
+                for (int i = currentGenerateTime - 1; i < historyInArrays.Length; i++)
                 {
                     ResultOfHistory += historyInArrays[i] + "\n";
                 }
@@ -187,14 +188,18 @@ namespace RandomSeatNumber.Pages
         
         private int[] GetDistinctRandomSeatNumber()
         {
-            if(DistinctSeatTable.Count <= 0)
+            if(DistinctSeatTable.Count < 1)
             {
-                DistinctSeatTable.AddRange(SeatTable);
+                // 防止再次加入重复元素的行为失效（可能是 RemoveAll() 函数的具体实现导致的）
+                HashSet<int[]> uniqueSeatTable = new HashSet<int[]>(SeatTable);
+                // 将唯一的元素添加到 DistinctSeatTable 中
+                DistinctSeatTable.AddRange(uniqueSeatTable);
             }
             // 随机抽取序数
             int RandomOrder = (int)Random.NextInt64(0, DistinctSeatTable.Count);
             int[] RandomSeatNumber = DistinctSeatTable[RandomOrder];
-            DistinctSeatTable.RemoveAll(e => e == RandomSeatNumber);
+
+            DistinctSeatTable.RemoveAll(e => e.SequenceEqual(RandomSeatNumber));
             return RandomSeatNumber;
         }
 
@@ -257,6 +262,12 @@ namespace RandomSeatNumber.Pages
             InforBar.Severity = severity;
 
             InforBar.IsOpen = true;
+        }
+
+        private void ClearHistory_Click(object sender, RoutedEventArgs e)
+        {
+            HistoryOfGenerated.Text = "";
+            generatedTimes = 0;
         }
     }
 }
