@@ -17,21 +17,23 @@ namespace RandomSeatNumber.Pages
     {
         private string generatedNumber;
 
-        public List<int[]> SeatTable; // 临时内容
+        public List<int[]> SeatTable; 
 
-        public List<int[]> DistinctSeatTable; // 临时内容
+        public List<int[]> DistinctSeatTable;
 
         Random Random = new Random(); // 临时内容
 
-        private int currentGenerateTime = 1;
+        private int currentGenerationFrequency = 1;
 
-        private int newGenerateTime;
+        private int newGenerationFrequency;
 
         private string intitialHistory;
 
         private string[] historyInArrays;
 
-        private int generatedTimes;
+        private int generationCount;
+
+        private const int MAX_GENERATION_COUNT = 50;
 
         public string GeneratedNumber
         {
@@ -56,6 +58,189 @@ namespace RandomSeatNumber.Pages
             GeneratedNumber = "请点击”生成“按钮";
             this.InitializeComponent();
 
+            PrepareSeatTable();
+
+            intitialHistory = HistoryOfGenerated.Text;
+        }
+
+        private void Generate_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+             * === 下方为临时内容 ===
+             * 暂时采取硬编码，往后需要更改
+             */
+
+            // 定义结果字符串
+            string Result = "";
+            string ResultOfHistory = "";
+
+            if(HistoryOfGenerated.Text == intitialHistory)
+            {
+                HistoryOfGenerated.Text = "";
+            }
+
+            if(generationCount > 100)
+            {
+                generationCount = 0;
+                // TODO: 生成历史会直接清空，考虑把最先的几个挤出去而不是清空（可能的实现方法：除去头 currentGenerateTime 个内容。
+                // 或者换用 ListView 表示而不是 TextBlock。
+                historyInArrays = HistoryOfGenerated.Text.Split('\n');
+                for (int i = currentGenerationFrequency - 1; i < historyInArrays.Length; i++)
+                {
+                    ResultOfHistory += historyInArrays[i] + "\n";
+                }
+                HistoryOfGenerated.Text = ResultOfHistory;
+            }
+
+            // 对结果字符串进行相关操作
+            // 如果生成次数不等于 1，循环搭建多次生成结果
+            if ((bool)!Distinct.IsChecked)
+            {
+                if (currentGenerationFrequency != 1)
+                {
+                    // 搭建多次生成结果字符串
+                    for (int i = 1; i <= currentGenerationFrequency; i++)
+                    {
+                        if (i != currentGenerationFrequency)
+                        {
+                            Result += TransformToString(GetRandomSeatNumber()) + "\n";
+                        }
+                        else
+                        {
+                            Result += TransformToString(GetRandomSeatNumber());
+                        }
+                    }
+                }
+                else
+                {
+                    // 如果生成次数为 1，只需生成一次
+                    Result = TransformToString(GetRandomSeatNumber());
+                } 
+            }
+            else
+            {
+                if (currentGenerationFrequency != 1)
+                {
+                    // 搭建多次生成结果字符串
+                    for (int i = 1; i <= currentGenerationFrequency; i++)
+                    {
+                        if (i != currentGenerationFrequency)
+                        {
+                            Result += TransformToString(GetDistinctRandomSeatNumber()) + "\n";
+                        }
+                        else
+                        {
+                            Result += TransformToString(GetDistinctRandomSeatNumber());
+                        }
+                    }
+                }
+                else
+                {
+                    // 如果生成次数为 1，只需生成一次
+                    Result = TransformToString(GetDistinctRandomSeatNumber());
+                }
+            }
+
+            HistoryOfGenerated.Text += Result + "\n";
+            generationCount += currentGenerationFrequency;
+            // 将文本覆盖到显示结果的控件
+            NumberTextBlock.Text = Result;
+        }
+
+        private int[] GetRandomSeatNumber()
+        {
+            // 随机抽取序数
+            int RandomOrder = (int)Random.NextInt64(0, SeatTable.Count);
+            int[] RandomSeatNumber = SeatTable[RandomOrder];
+            return RandomSeatNumber;
+        }
+        
+        private int[] GetDistinctRandomSeatNumber()
+        {
+            if(generationCount >= DistinctSeatTable.Count)
+            {
+                DistinctSeatTable = new();
+                // 将唯一的元素添加到 DistinctSeatTable 中
+
+                DistinctSeatTable.AddRange(SeatTable);
+            }
+            // 随机抽取序数
+            int RandomOrder = (int)Random.NextInt64(0, DistinctSeatTable.Count);
+            int[] RandomSeatNumber = DistinctSeatTable[RandomOrder];
+
+            DistinctSeatTable.RemoveAll(e => e.SequenceEqual(RandomSeatNumber));
+            return RandomSeatNumber;
+        }
+
+        private string TransformToString(int[] RandomSeatNumber)
+        {
+            // 转为字符串
+            string DistrictNumber = RandomSeatNumber[0].ToString();
+            string RowNumber = RandomSeatNumber[1].ToString();
+            string ColumnNumber = RandomSeatNumber[2].ToString();
+
+            return DistrictNumber + ", " + RowNumber + ", " + ColumnNumber;
+        }
+
+        // 应用用户输入的生成次数
+
+        private void NumberOfGenerateTime_Input_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // 将生成结果转为 int，并赋值给 newGenerateTime
+            bool result = int.TryParse(NumberOfGenerateTime_Input.Text, out newGenerationFrequency);
+
+            // 如果符合“全部为数字字符且该数字的值不超过 100”的条件
+            if (result && newGenerationFrequency > 0 && newGenerationFrequency <= MAX_GENERATION_COUNT)
+            {
+                // 应用数值
+                currentGenerationFrequency = newGenerationFrequency;
+
+                // 通知用户修改成功
+                ShowNotification("成功修改", 
+                                 "你已经成功修改生成次数为 " + currentGenerationFrequency + " 次", 
+                                 InfoBarSeverity.Success);
+            }
+            // 如果不符合条件
+            else
+            {
+                // newGenerateTime 被赋值为 0，currentGenerateTime 不受影响
+
+                // 可能是因为用户输入了非数字字符
+                if (!result)
+                {
+                    ShowNotification("无效数字", "你输入的内容可能包含非阿拉伯数字字符", InfoBarSeverity.Warning);
+                }
+                // 如果通过了上面的判断，则进行对数字数值问题的排查
+                // 可能是数值过大
+                else if (newGenerationFrequency > MAX_GENERATION_COUNT || newGenerationFrequency < 0)
+                {
+                    ShowNotification("极端数值", "你输入的数值可能并不在允许的范围内，请输入 1~50 内的数字", InfoBarSeverity.Warning);
+                }
+            }
+        }
+
+        private void ShowNotification(string title, string message, InfoBarSeverity severity)
+        {
+            if(InforBar.IsOpen)
+            {
+                InforBar.IsOpen = false;
+            }
+
+            InforBar.Title = title;
+            InforBar.Message = message;
+            InforBar.Severity = severity;
+
+            InforBar.IsOpen = true;
+        }
+
+        private void ClearHistory_Click(object sender, RoutedEventArgs e)
+        {
+            HistoryOfGenerated.Text = "";
+            generationCount = 0;
+        }
+
+        private void PrepareSeatTable()
+        {
             /*
              * === 下方为临时内容 ===
              * 暂时采取硬编码，往后需要更改
@@ -90,184 +275,6 @@ namespace RandomSeatNumber.Pages
             // 生成初始座次表
             SeatTable = Generator.CreateSeatTableByDistracts(distract1, distract2, distract3);
             DistinctSeatTable = SeatTable;
-
-            intitialHistory = HistoryOfGenerated.Text;
-        }
-
-        private void Generate_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-             * === 下方为临时内容 ===
-             * 暂时采取硬编码，往后需要更改
-             */
-
-            // 定义结果字符串
-            string Result = "";
-            string ResultOfHistory = "";
-
-            if(HistoryOfGenerated.Text == intitialHistory)
-            {
-                HistoryOfGenerated.Text = "";
-            }
-
-            if(generatedTimes > 100)
-            {
-                generatedTimes = 0;
-                // TODO: 生成历史会直接清空，考虑把最先的几个挤出去而不是清空（可能的实现方法：除去头 currentGenerateTime 个内容。
-                // 或者换用 ListView 表示而不是 TextBlock。
-                historyInArrays = HistoryOfGenerated.Text.Split('\n');
-                for (int i = currentGenerateTime - 1; i < historyInArrays.Length; i++)
-                {
-                    ResultOfHistory += historyInArrays[i] + "\n";
-                }
-                HistoryOfGenerated.Text = ResultOfHistory;
-            }
-
-            // 对结果字符串进行相关操作
-            // 如果生成次数不等于 1，循环搭建多次生成结果
-            if ((bool)!Distinct.IsChecked)
-            {
-                if (currentGenerateTime != 1)
-                {
-                    // 搭建多次生成结果字符串
-                    for (int i = 1; i <= currentGenerateTime; i++)
-                    {
-                        if (i != currentGenerateTime)
-                        {
-                            Result += TransformToString(GetRandomSeatNumber()) + "\n";
-                        }
-                        else
-                        {
-                            Result += TransformToString(GetRandomSeatNumber());
-                        }
-                    }
-                }
-                else
-                {
-                    // 如果生成次数为 1，只需生成一次
-                    Result = TransformToString(GetRandomSeatNumber());
-                } 
-            }
-            else
-            {
-                if (currentGenerateTime != 1)
-                {
-                    // 搭建多次生成结果字符串
-                    for (int i = 1; i <= currentGenerateTime; i++)
-                    {
-                        if (i != currentGenerateTime)
-                        {
-                            Result += TransformToString(GetDistinctRandomSeatNumber()) + "\n";
-                        }
-                        else
-                        {
-                            Result += TransformToString(GetDistinctRandomSeatNumber());
-                        }
-                    }
-                }
-                else
-                {
-                    // 如果生成次数为 1，只需生成一次
-                    Result = TransformToString(GetDistinctRandomSeatNumber());
-                }
-            }
-
-            HistoryOfGenerated.Text += Result + "\n";
-            generatedTimes += currentGenerateTime;
-            // 将文本覆盖到显示结果的控件
-            NumberTextBlock.Text = Result;
-        }
-
-        private int[] GetRandomSeatNumber()
-        {
-            // 随机抽取序数
-            int RandomOrder = (int)Random.NextInt64(0, SeatTable.Count);
-            int[] RandomSeatNumber = SeatTable[RandomOrder];
-            return RandomSeatNumber;
-        }
-        
-        private int[] GetDistinctRandomSeatNumber()
-        {
-            if(DistinctSeatTable.Count < 1)
-            {
-                // 防止再次加入重复元素的行为失效（可能是 RemoveAll() 函数的具体实现导致的）
-                HashSet<int[]> uniqueSeatTable = new HashSet<int[]>(SeatTable);
-                // 将唯一的元素添加到 DistinctSeatTable 中
-                DistinctSeatTable.AddRange(uniqueSeatTable);
-            }
-            // 随机抽取序数
-            int RandomOrder = (int)Random.NextInt64(0, DistinctSeatTable.Count);
-            int[] RandomSeatNumber = DistinctSeatTable[RandomOrder];
-
-            DistinctSeatTable.RemoveAll(e => e.SequenceEqual(RandomSeatNumber));
-            return RandomSeatNumber;
-        }
-
-        private string TransformToString(int[] RandomSeatNumber)
-        {
-            // 转为字符串
-            string DistrictNumber = RandomSeatNumber[0].ToString();
-            string RowNumber = RandomSeatNumber[1].ToString();
-            string ColumnNumber = RandomSeatNumber[2].ToString();
-
-            return DistrictNumber + ", " + RowNumber + ", " + ColumnNumber;
-        }
-
-        // 应用用户输入的生成次数
-
-        private void NumberOfGenerateTime_Input_LostFocus(object sender, RoutedEventArgs e)
-        {
-            // 将生成结果转为 int，并赋值给 newGenerateTime
-            bool result = int.TryParse(NumberOfGenerateTime_Input.Text, out newGenerateTime);
-
-            // 如果符合“全部为数字字符且该数字的值不超过 100”的条件
-            if (result && newGenerateTime > 0 && newGenerateTime <= 100)
-            {
-                // 应用数值
-                currentGenerateTime = newGenerateTime;
-
-                // 通知用户修改成功
-                ShowNotification("成功修改", 
-                                 "你已经成功修改生成次数为 " + currentGenerateTime + " 次", 
-                                 InfoBarSeverity.Success);
-            }
-            // 如果不符合条件
-            else
-            {
-                // newGenerateTime 被赋值为 0，currentGenerateTime 不受影响
-
-                // 可能是因为用户输入了非数字字符
-                if (!result)
-                {
-                    ShowNotification("无效数字", "你输入的内容可能包含非阿拉伯数字字符", InfoBarSeverity.Warning);
-                }
-                // 如果通过了上面的判断，则进行对数字数值问题的排查
-                // 可能是数值过大
-                else if (newGenerateTime > 100 || newGenerateTime < 0)
-                {
-                    ShowNotification("极端数值", "你输入的数值可能并不在允许的范围内，请输入 1~100 内的数字", InfoBarSeverity.Warning);
-                }
-            }
-        }
-
-        private void ShowNotification(string title, string message, InfoBarSeverity severity)
-        {
-            if(InforBar.IsOpen)
-            {
-                InforBar.IsOpen = false;
-            }
-
-            InforBar.Title = title;
-            InforBar.Message = message;
-            InforBar.Severity = severity;
-
-            InforBar.IsOpen = true;
-        }
-
-        private void ClearHistory_Click(object sender, RoutedEventArgs e)
-        {
-            HistoryOfGenerated.Text = "";
-            generatedTimes = 0;
         }
     }
 }

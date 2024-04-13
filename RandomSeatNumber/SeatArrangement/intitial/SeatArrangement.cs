@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace RandomSeatNumber.Generate
 {
-    class InitialSeatTable
+    class SeatArrangement
     {
         public string ID { get; set; }
 
         public List<InitialDistract> Content { get; set; }
 
-        public InitialSeatTable(string ID, List<InitialDistract> content)
+        public SeatArrangement(string ID, List<InitialDistract> content)
         {
             #region Assignment
             this.ID = ID;

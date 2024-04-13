@@ -84,7 +84,7 @@
 
             <!--选择生成次数的卡片-->
             <toolkit:SettingsCard Header="生成多个座位号"
-                                  Description="在右侧输入需要的生成次数，并点击上方按钮生成。输入的数值需要在 1~100 之内。">
+                                  Description="在右侧输入需要的生成次数，并点击上方按钮生成。输入的数值需要在 1~50 之内。">
                 <toolkit:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xECAA;" />
                 </toolkit:SettingsCard.HeaderIcon>
