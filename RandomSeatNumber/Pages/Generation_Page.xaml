@@ -93,18 +93,21 @@
                          LostFocus="NumberOfGenerateTime_Input_LostFocus"/>
             </toolkit:SettingsCard>
 
-            <Expander Header="去重设置"
-                      HorizontalAlignment="Stretch">
+            <toolkit:SettingsExpander Header="去重设置"
+                                      HorizontalAlignment="Stretch"
+                                      Description="在此处设置去重有关选项">
                 <!--选择是否去重的卡片-->
-                <toolkit:SettingsCard Header="是否去重"
-                                      Description="在右侧选择是否要去除重复生成的座号。">
-                    <toolkit:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE716;" />
-                    </toolkit:SettingsCard.HeaderIcon>
-                    <CheckBox x:Name="Distinct"
-                              Content="是否去重"/>
-                </toolkit:SettingsCard>
-            </Expander>
+                <toolkit:SettingsExpander.Items>
+                    <toolkit:SettingsCard Header="选择是否去重"
+                                          Description="在右侧选择是否要去除重复生成的座号。">
+                        <toolkit:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE716;" />
+                        </toolkit:SettingsCard.HeaderIcon>
+                        <CheckBox x:Name="Distinct"
+                                  Content="是否去重"/>
+                    </toolkit:SettingsCard>
+                </toolkit:SettingsExpander.Items>
+            </toolkit:SettingsExpander>
 
             <!--生成次数修改的提示-->
             <InfoBar x:Name="InforBar"

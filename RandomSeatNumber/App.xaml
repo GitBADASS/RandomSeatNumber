@@ -8,15 +8,15 @@
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
-            <!--修改主题颜色--><!--
-            <Color x:Key="SystemAccentColor">#EC7063</Color>
-            <Color x:Key="SystemAccentColorDark1">#E74C3C</Color>
-            <Color x:Key="SystemAccentColorDark2">#922B21</Color>
-            <Color x:Key="SystemAccentColorDark3">#641E16</Color>
-            <Color x:Key="SystemAccentColorLight1">#E6B0AA</Color>
-            <Color x:Key="SystemAccentColorLight2">#F2D7D5</Color>
-            <Color x:Key="SystemAccentColorLight3">#F9EBEA</Color>
-            --><!--修改主题颜色结束-->
+            <!--修改主题颜色-->
+            <Color x:Key="SystemAccentColor">#FFB643</Color>
+            <Color x:Key="SystemAccentColorDark1">#FF9C00</Color>
+            <Color x:Key="SystemAccentColorDark2">#D96038</Color>
+            <Color x:Key="SystemAccentColorDark3">#A12900</Color>
+            <Color x:Key="SystemAccentColorLight1">#f3f3f3</Color>
+            <Color x:Key="SystemAccentColorLight2">#d0d0d9</Color>
+            <Color x:Key="SystemAccentColorLight3">#e6e6e6</Color>
+            <!--修改主题颜色结束-->
 
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />

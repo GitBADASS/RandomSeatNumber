@@ -157,18 +157,16 @@ namespace RandomSeatNumber.Pages
         
         private int[] GetDistinctRandomSeatNumber()
         {
-            if(generationCount >= DistinctSeatTable.Count)
+            if(DistinctSeatTable.Count <= 1)
             {
                 DistinctSeatTable = new();
-                // 将唯一的元素添加到 DistinctSeatTable 中
-
                 DistinctSeatTable.AddRange(SeatTable);
             }
             // 随机抽取序数
             int RandomOrder = (int)Random.NextInt64(0, DistinctSeatTable.Count);
             int[] RandomSeatNumber = DistinctSeatTable[RandomOrder];
 
-            DistinctSeatTable.RemoveAll(e => e.SequenceEqual(RandomSeatNumber));
+            DistinctSeatTable.RemoveAt(RandomOrder);
             return RandomSeatNumber;
         }
 
