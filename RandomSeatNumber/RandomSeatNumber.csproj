@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
 	<OutputType>WinExe</OutputType>
-	<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-	<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+	<TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
 	<RootNamespace>RandomSeatNumber</RootNamespace>
 	<ApplicationManifest>app.manifest</ApplicationManifest>
 	<Platforms>x86;x64;ARM64</Platforms>
@@ -21,6 +20,9 @@
 	<DefaultLanguage>zh-cn</DefaultLanguage>
 	<PackageCertificateThumbprint>0BA1EE7ECFF084225A68246AA2EC9299BC112A9E</PackageCertificateThumbprint>
 	<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+	<SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+	<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+	<WindowsSdkPackageVersion>10.0.19041.38</WindowsSdkPackageVersion>
   </PropertyGroup>
   <ItemGroup>
 	<None Remove="hlt_x64.ico" />
@@ -46,9 +48,10 @@
   <ItemGroup>
 	<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
 	<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.240109" />
+	<PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" Version="8.0.240109" />
 	<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
-	<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240404000" />
-	<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
+	<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
+	<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
 	<Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 

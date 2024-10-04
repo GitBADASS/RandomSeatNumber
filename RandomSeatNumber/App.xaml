@@ -9,7 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--修改主题颜色-->
-            <Color x:Key="SystemAccentColor">#FFB643</Color>
+            <Color x:Key="SystemAccentColor">#ffcc66</Color>
             <Color x:Key="SystemAccentColorDark1">#FF9C00</Color>
             <Color x:Key="SystemAccentColorDark2">#D96038</Color>
             <Color x:Key="SystemAccentColorDark3">#A12900</Color>

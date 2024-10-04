@@ -2,7 +2,7 @@
 
 namespace RandomSeatNumber.Generate
 {
-    class Generator
+    public class SeatNumberTranslator
     {
         /// <summary>
         /// 将初始的区加工为装载数组的集合

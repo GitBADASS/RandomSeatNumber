@@ -9,162 +9,202 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollView>
-        <StackPanel Padding="20" Spacing="20"
-                    HorizontalAlignment="Stretch">
-            <!--生成结果显示区域-->
-            <Grid ColumnSpacing="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                </Grid.RowDefinitions>
-                
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                
-                <!--单个生成-->
-                <Button VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        BorderThickness="1"
-                        BorderBrush="{ThemeResource ResultRegionBorder}"
-                        Background="{ThemeResource ResultRegionBackground}"
-                        Click="Generate_Btn_Click">
-                    <!--TODO: 考虑给用户提供该区域点击是否有效的设置，暂且的解决方案是把 Click 设为 null-->
-                    <!--TODO: 考虑将可滚动区域设为不可点击的区域-->
-                <Grid Grid.Row="0" Grid.Column="0"
-                      VerticalAlignment="Stretch"
-                      HorizontalAlignment="Stretch">
-                    <ScrollViewer
-                        HorizontalAlignment="Stretch">
-                        <TextBlock x:Name="NumberTextBlock"
-                                   FontSize="50"
-                                   FontWeight="ExtraBold"
-                                   TextWrapping="WrapWholeWords"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Center"
-                                   Text="{x:Bind GeneratedNumber}"/>
-                    </ScrollViewer>
-                </Grid>
-                </Button>
+    <Grid VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" 
+                              MinWidth="600"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"
+                              MinWidth="200"/>
+        </Grid.ColumnDefinitions>
 
-                <!--生成历史-->
-                <Grid Grid.Row="0" Grid.Column="1" 
-                      CornerRadius="5"
-                      Background="{StaticResource CardBackgroundFillColorDefault}"
+        <ScrollView Grid.Column="0"
+                    VerticalAlignment="Stretch"
+                    Background="{StaticResource CardBackgroundFillColorDefault}"
+                    BorderThickness="1"
+                    BorderBrush="{StaticResource CardStrokeColorDefault}">
+            <!--生成报告显示区域-->
+            <StackPanel Padding="150, 20, 150, 20"
+                        Spacing="12">
+                <!--生成结果 标题-->
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}">
+                    生成结果
+                </TextBlock>
+
+                <!--生成结果 副标题-->
+                <TextBlock>
+                    显示最近一次生成的座位号。
+                </TextBlock>
+
+                <!--生成结果 显示区域-->
+                <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                       BorderThickness="1"
                       BorderBrush="{StaticResource CardStrokeColorDefault}">
-                    <ScrollViewer>
-                        <Grid>
-                            <TextBlock x:Name="HistoryOfGenerated"
-                                       TextWrapping="WrapWholeWords"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Text="100 次生成历史"/>
-                        </Grid>
-                    </ScrollViewer>
-                    <CommandBar DefaultLabelPosition="Right">
-                        <AppBarButton Icon="Delete" Label="清空历史" 
-                                      Click="ClearHistory_Click"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid BorderBrush="{StaticResource CardStrokeColorDefault}"
+                          BorderThickness="0,0,0,1">
+                        <TextBlock Grid.Row="0"
+                                   Style="{StaticResource DisplayTextBlockStyle}"
+                                   TextAlignment="Center"
+                                   CharacterSpacing="500">
+                            211
+                        </TextBlock>
+                    </Grid>
+
+                    <CommandBar Grid.Row="1"
+                                Background="{StaticResource CardBackgroundFillColorDefault}">
+                        <AppBarButton Icon="Copy" Label="复制" />
+                        <AppBarSeparator/>
+                        <AppBarButton Icon="ZoomIn" Label="放大" />
+                        <AppBarButton Icon="ZoomOut" Label="缩小" />
+
+                        <CommandBar.Content>
+                            <TextBlock Text="最新的生成结果" Margin="12,14"/>
+                        </CommandBar.Content>
                     </CommandBar>
                 </Grid>
-                
-            </Grid>
-            
-            <!--生成座位号的卡片-->
-            <toolkit:SettingsCard Header="生成单个座位号"
-                                  Description="点击右侧按钮可以随机生成座位号。">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xECC8;" />
-                </toolkit:SettingsCard.HeaderIcon>
-                <Button x:Name="Generate"
-                        Content="生成"
-                        Click="Generate_Btn_Click"/>
-            </toolkit:SettingsCard>
 
-            <!--选择生成次数的卡片-->
-            <toolkit:SettingsCard Header="生成多个座位号"
-                                  Description="在右侧输入需要的生成次数，并点击上方按钮生成。输入的数值需要在 1~50 之内。">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xECAA;" />
-                </toolkit:SettingsCard.HeaderIcon>
-                <TextBox x:Name="NumberOfGenerateTime_Input"
-                         PlaceholderText="键入生成次数"
-                         LostFocus="NumberOfGenerateTime_Input_LostFocus"/>
-            </toolkit:SettingsCard>
+                <!--历史结果 标题-->
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}">
+                    历史结果
+                </TextBlock>
 
-            <toolkit:SettingsExpander Header="去重设置"
-                                      HorizontalAlignment="Stretch"
-                                      Description="在此处设置去重有关选项">
-                <!--选择是否去重的卡片-->
-                <toolkit:SettingsExpander.Items>
-                    <toolkit:SettingsCard Header="选择是否去重"
-                                          Description="在右侧选择是否要去除重复生成的座号。">
-                        <toolkit:SettingsCard.HeaderIcon>
-                            <FontIcon Glyph="&#xE716;" />
-                        </toolkit:SettingsCard.HeaderIcon>
-                        <CheckBox x:Name="Distinct"
-                                  Content="是否去重"/>
-                    </toolkit:SettingsCard>
-                </toolkit:SettingsExpander.Items>
-            </toolkit:SettingsExpander>
+                <!--历史结果 副标题-->
+                <TextBlock>
+                    显示一些生成结果的历史记录。
+                </TextBlock>
 
-            <!--生成次数修改的提示-->
-            <InfoBar x:Name="InforBar"
-                     IsOpen="False"/>
+                <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                      BorderBrush="{StaticResource CardStrokeColorDefault}"
+                      BorderThickness="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0"
+                              Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                              BorderBrush="{StaticResource CardStrokeColorDefault}"
+                              BorderThickness="0,0,0,1"
+                              Height="350">
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                        <x:String>211</x:String>
+                    </ListView>
 
-            <!--<toolkit:SettingsCard Header="昼夜颜色模式">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xECAA;" />
-                </toolkit:SettingsCard.HeaderIcon>
-                <Button x:Name="MultiplyGenerate"
-                            Content="生成 5 次"
-                            Click="MultiplyGenerate_Click"/>
-            </toolkit:SettingsCard>-->
+                    <CommandBar Grid.Row="1"
+                                Background="{StaticResource CardBackgroundFillColorDefault}">
+                        <AppBarButton Icon="Copy" Label="复制"/>
+                        <AppBarButton Icon="Delete" Label="清空"/>
+                        <AppBarSeparator/>
+                        <AppBarButton Icon="ZoomIn" Label="放大" />
+                        <AppBarButton Icon="ZoomOut" Label="缩小" />
 
-            <!--声明卡片 临时-->
-            <StackPanel Background="{StaticResource CardBackgroundFillColorDefault}"
-                        BorderThickness="1"
-                        BorderBrush="{StaticResource CardStrokeColorDefault}"
-                        CornerRadius="4">
-                <RichTextBlock Padding="20">
-                    <Paragraph>
-                        <Bold FontSize="20">重要信息</Bold>
-                    </Paragraph>
-
-                    <Paragraph>
-                        <Bold>2024 年 3 月 31 日最新更新：</Bold>
-                        <Run>
-                            排除了不存在的座号：第一区的及第二区的第七排所有座号，第三区第七排 {3, 7, 3} 以外的座号。详细如下：（第一区）{1, 7, 1}、{1, 7, 2}、{1, 7, 3}；（第二区）{2, 7, 1}、{2, 7, 2}、{2, 7, 3}；（第三区）{3, 7, 1}、{3, 7, 2}。除了本页面以外，其它页面依然没有被开发出来。我们会持续完善 GUI 界面。
-                        </Run>
-                        <Bold>这意味着，你当前所使用的功能、看到的 GUI 界面仍然是极其不完善的。</Bold>
-                    </Paragraph>
-
-                    <Paragraph>
-                        <Run>
-                            本程序更新了随机生成的算法以及 UI 设计，但是由于开发时间不够充裕，大部分内容仍未开放。我们会尽力实现计划内的全部功能。
-                        </Run>
-                    </Paragraph>
-
-                    <Paragraph>
-                        <Run>
-                            “开发信息”页尚未开放，因此部分开发信息暂时寄存此处。
-                        </Run>
-                    </Paragraph>
-
-                    <Paragraph>
-                        <Run>
-                            算法更新内容：先前的算法是 3（组数：三组）× 6 || 7（排数：六排或七排，由组决定）× 1 || 2 || 3（列数：一列、二列或三列，由前述二者综合决定），公平性并不强，并且实际概率极为复杂。新算法暂将全班所有座位号（我们可能会有记错或者记不准的地方）存到一个集合中，以每人均等的概率抽取。目前的 UI 设计也比较简单并且欠缺美观，日后会改善。
-                        </Run>
-                    </Paragraph>
-
-                    <Paragraph>
-                        <Run>
-                            开发者：23 届 12 班 电教委员
-                        </Run>
-                    </Paragraph>
-                </RichTextBlock>
+                        <CommandBar.Content>
+                            <TextBlock Text="历史生成结果" Margin="12,14"/>
+                        </CommandBar.Content>
+                    </CommandBar>
+                </Grid>
             </StackPanel>
-        </StackPanel>
-    </ScrollView>
+        </ScrollView>
+
+        <toolkit:GridSplitter Grid.Column="1"/>
+
+        <!--总体操作空间-->
+        <Grid Grid.Column="2">
+            <Grid VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <!--操作菜单-->
+                <ScrollView>
+                    <StackPanel Padding="20" Spacing="10"
+                                        HorizontalAlignment="Stretch">
+                        <!--生成座位号的卡片-->
+                        <toolkit:SettingsCard Grid.Row="0"
+                                                  Header="生成随机座位号"
+                                                  Description="点击旁边按钮可以随机生成座位号。">
+                            <toolkit:SettingsCard.HeaderIcon>
+                                <FontIcon Glyph="&#xECC8;" />
+                            </toolkit:SettingsCard.HeaderIcon>
+                            <Button x:Name="Generate"
+                                        Content="生成"
+                                        Style="{StaticResource AccentButtonStyle}"
+                                        Click="Generate_Btn_ClickAsync"/>
+                        </toolkit:SettingsCard>
+                        <!--选择生成次数的卡片-->
+                        <toolkit:SettingsCard Header="生成多个座位号"
+                                              Description="在右侧输入需要的生成次数，并点击上方按钮生成。输入的数值需要在 1~50 之内。">
+                            <toolkit:SettingsCard.HeaderIcon>
+                                <FontIcon Glyph="&#xECAA;" />
+                            </toolkit:SettingsCard.HeaderIcon>
+                            <NumberBox x:Name="NumberOfGenerateTime_Input"
+                                       Value="{x:Bind GenerationFreq, Mode=TwoWay}"
+                                       PlaceholderText="输入次数"
+                                       LostFocus="NumberOfGenerateTime_Input_LostFocus"
+                                       ValueChanged="NumberOfGenerateTime_Input_ValueChanged"
+                                       SpinButtonPlacementMode="Compact"
+                                       SmallChange="1"
+                                       LargeChange="5"/>
+                        </toolkit:SettingsCard>
+
+                        <toolkit:SettingsExpander Header="其它生成设置"
+                                                  HorizontalAlignment="Stretch"
+                                                  Description="在此处设置包括去重等其它有关选项">
+                            <!--选择是否去重的卡片-->
+                            <toolkit:SettingsExpander.Items>
+                                <toolkit:SettingsCard Header="选择是否去重"
+                                                      Description="在右侧选择是否要去除重复生成的座号。">
+                                    <toolkit:SettingsCard.HeaderIcon>
+                                        <FontIcon Glyph="&#xE716;" />
+                                    </toolkit:SettingsCard.HeaderIcon>
+                                    <CheckBox x:Name="Distinct"
+                                              Content="是否去重"/>
+                                </toolkit:SettingsCard>
+                            </toolkit:SettingsExpander.Items>
+                        </toolkit:SettingsExpander>
+
+                        <!--生成次数修改的提示-->
+                        <InfoBar x:Name="InforBar"
+                                 IsOpen="False"/>
+                    </StackPanel>
+                </ScrollView>
+
+                <!--指令栏-->
+                <Grid Grid.Row="1">
+                    <CommandBar>
+                        <AppBarToggleButton Icon="Shuffle" Label="Shuffle" Click="AppBarButton_Click" />
+                        <AppBarToggleButton Icon="RepeatAll" Label="Repeat" Click="AppBarButton_Click"/>
+                        <AppBarSeparator/>
+                        <AppBarButton Icon="Back" Label="Back" Click="AppBarButton_Click"/>
+                        <AppBarButton Icon="Stop" Label="Stop" Click="AppBarButton_Click"/>
+                        <AppBarButton Icon="Play" Label="Play" Click="AppBarButton_Click"/>
+                        <AppBarButton Icon="Forward" Label="Forward" Click="AppBarButton_Click"/>
+
+                        <CommandBar.SecondaryCommands>
+                            <AppBarButton Label="Like" Click="AppBarButton_Click"/>
+                            <AppBarButton Label="Dislike" Click="AppBarButton_Click"/>
+                        </CommandBar.SecondaryCommands>
+
+                        <CommandBar.Content>
+                            <TextBlock Text="编组轮换操作" Margin="12,14"/>
+                        </CommandBar.Content>
+                    </CommandBar>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
 </Page>

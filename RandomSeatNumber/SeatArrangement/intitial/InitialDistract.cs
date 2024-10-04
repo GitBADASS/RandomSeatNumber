@@ -7,7 +7,7 @@ namespace RandomSeatNumber.Generate
     /// 组（区）类
     /// 针对组规定每组分布情况
     /// </summary>
-    class InitialDistract
+    public class InitialDistract
     {
         /// <summary>
         /// 组序

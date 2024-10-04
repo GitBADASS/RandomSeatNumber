@@ -20,6 +20,9 @@ namespace RandomSeatNumber
             // 初始化控件
             this.InitializeComponent();
 
+            //
+            
+
             // 处理自定义标题栏
             ProcessTheCustomTitleBar();
 

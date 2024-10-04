@@ -38,7 +38,7 @@
 
         <NavigationView x:Name="SideBar" 
                         Grid.Row="1" Grid.Column="1"
-                        PaneDisplayMode="Left" 
+                        PaneDisplayMode="Top" 
                         IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
                         PaneTitle="RandomSN"
                         SelectionChanged="NavigationView_SelectionChanged"
