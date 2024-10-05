@@ -47,12 +47,12 @@
                     </Grid.RowDefinitions>
                     <Grid BorderBrush="{StaticResource CardStrokeColorDefault}"
                           BorderThickness="0,0,0,1">
-                        <TextBlock Grid.Row="0"
+                        <TextBlock x:Name="GnrtResTextBlock"
+                                   Grid.Row="0"
                                    Style="{StaticResource DisplayTextBlockStyle}"
                                    TextAlignment="Center"
-                                   CharacterSpacing="500">
-                            211
-                        </TextBlock>
+                                   CharacterSpacing="500"
+                                   Text="???"/>
                     </Grid>
 
                     <CommandBar Grid.Row="1"
@@ -89,18 +89,8 @@
                               Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                               BorderBrush="{StaticResource CardStrokeColorDefault}"
                               BorderThickness="0,0,0,1"
-                              Height="350">
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
-                        <x:String>211</x:String>
+                              Height="350"
+                              ItemsSource="{x:Bind GeneratedResList, Mode=TwoWay}">
                     </ListView>
 
                     <CommandBar Grid.Row="1"
@@ -172,7 +162,8 @@
                                         <FontIcon Glyph="&#xE716;" />
                                     </toolkit:SettingsCard.HeaderIcon>
                                     <CheckBox x:Name="Distinct"
-                                              Content="是否去重"/>
+                                              Content="是否去重"
+                                              IsChecked="{x:Bind IsRepeatable, Mode=TwoWay}"/>
                                 </toolkit:SettingsCard>
                             </toolkit:SettingsExpander.Items>
                         </toolkit:SettingsExpander>

@@ -9,7 +9,7 @@ namespace RandomSeatNumber.Generate
     public class RandomGenerator
     {
         // 样本空间
-        List<int[]> Content;
+        public List<int[]> Content;
         // 样本空间原始副本
         readonly List<int[]> CopyOfContent;
         // 随机对象
@@ -17,15 +17,20 @@ namespace RandomSeatNumber.Generate
 
         public RandomGenerator(List<int[]> content)
         {
-            // 输入内容给样本空间
-            Content.AddRange(content);
+            Content = new();
+            if(content != null)
+            {
+                // 输入内容给样本空间
+                Content.AddRange(content);
 
-            // 存储原始样本空间的副本
-            CopyOfContent = new();
-            CopyOfContent.AddRange(Content);
+                // 存储原始样本空间的副本
+                CopyOfContent = new();
+                CopyOfContent.AddRange(Content);
 
-            // 初始化随机对象
-            randomer = new();
+                // 初始化随机对象
+                randomer = new();
+            }
+
         }
 
         // 获取随机数

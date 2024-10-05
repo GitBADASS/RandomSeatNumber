@@ -23,6 +23,7 @@
 	<SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
 	<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
 	<WindowsSdkPackageVersion>10.0.19041.38</WindowsSdkPackageVersion>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
 	<None Remove="hlt_x64.ico" />
@@ -87,6 +88,10 @@
 	<Page Update="Pages\Generation_Page.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="新文件夹\" />
   </ItemGroup>
 
   <!-- 
