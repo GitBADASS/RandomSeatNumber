@@ -66,6 +66,7 @@ namespace RandomSeatNumber.Generate
         // 恢复样本空间
         public void RestoreContent()
         {
+            Content.Clear();
             Content.AddRange(CopyOfContent);
         }
     }

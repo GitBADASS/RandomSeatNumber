@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using RandomSeatNumber.Animations;
 using RandomSeatNumber.Generate;
+using RandomSeatNumber.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,8 +23,28 @@ namespace RandomSeatNumber.Pages
         //***************
         // 生成所需参数集合（暂用硬编码
         //***************
-        public int GenerationFreq = 1;
-        public bool IsRepeatable = false;
+        private int _generationFreq;
+        public int GenerationFreq
+        {
+            set
+            {
+                _generationFreq = value;
+                GenerationOptionsHelper.GenerationFreq = value;
+                NumberOfGenerateTime_Input.Value = value;
+            }
+            get { return _generationFreq; }
+        }
+
+        private bool _isRepeatable;
+        public bool IsRepeatable {
+            set 
+            {
+                _isRepeatable = value;
+                GenerationOptionsHelper.IsRepeatable = value;
+                IsRepeatableCheckBox.IsChecked = value;
+            }
+            get { return _isRepeatable; }
+        }
 
         // 生成的座位号
         private string generatedRes;
@@ -77,6 +98,10 @@ namespace RandomSeatNumber.Pages
         }
         private void GenerationPageOnLauched(object sender, RoutedEventArgs e)
         {
+            // 按照本地设置分配参数值
+            IsRepeatable = GenerationOptionsHelper.IsRepeatable;
+            GenerationFreq = GenerationOptionsHelper.GenerationFreq;
+
             List<int[]> test;
             List<int[]> bl = new();
             bl.Add(new int[] { 7, 2 });
@@ -118,6 +143,12 @@ namespace RandomSeatNumber.Pages
             GeneratedRes = res;
             // 暂用硬编码，日后整改
             _ = TextAnimations.RandomTextNumberPerCharAsync(GnrtResTextBlock, GeneratedRes, 10, 10);
+        }
+
+        private void IsRepeatableCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            IsRepeatable = false;
+            generator.RestoreContent();
         }
     }
 }

@@ -161,9 +161,10 @@
                                     <toolkit:SettingsCard.HeaderIcon>
                                         <FontIcon Glyph="&#xE716;" />
                                     </toolkit:SettingsCard.HeaderIcon>
-                                    <CheckBox x:Name="Distinct"
+                                    <CheckBox x:Name="IsRepeatableCheckBox"
                                               Content="是否去重"
-                                              IsChecked="{x:Bind IsRepeatable, Mode=TwoWay}"/>
+                                              IsChecked="{x:Bind IsRepeatable, Mode=TwoWay}"
+                                              Unchecked="IsRepeatableCheckBox_Unchecked"/>
                                 </toolkit:SettingsCard>
                             </toolkit:SettingsExpander.Items>
                         </toolkit:SettingsExpander>

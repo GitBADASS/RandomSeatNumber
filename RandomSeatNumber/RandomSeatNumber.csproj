@@ -90,7 +90,6 @@
 	</Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="新文件夹\" />
   </ItemGroup>
 
