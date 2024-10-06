@@ -75,7 +75,7 @@
 
                 <!--历史结果 副标题-->
                 <TextBlock>
-                    显示一些生成结果的历史记录。
+                    显示一些生成结果的集合。
                 </TextBlock>
 
                 <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
@@ -85,7 +85,8 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0"
+                    <ListView x:Name="ResListView"
+                              Grid.Row="0"
                               Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                               BorderBrush="{StaticResource CardStrokeColorDefault}"
                               BorderThickness="0,0,0,1"
@@ -96,7 +97,8 @@
                     <CommandBar Grid.Row="1"
                                 Background="{StaticResource CardBackgroundFillColorDefault}">
                         <AppBarButton Icon="Copy" Label="复制"/>
-                        <AppBarButton Icon="Delete" Label="清空"/>
+                        <AppBarButton Icon="Delete" Label="清空"
+                                      Click="ListClearButton_ClickAsync"/>
                         <AppBarSeparator/>
                         <AppBarButton Icon="ZoomIn" Label="放大" />
                         <AppBarButton Icon="ZoomOut" Label="缩小" />
@@ -130,7 +132,7 @@
                             <toolkit:SettingsCard.HeaderIcon>
                                 <FontIcon Glyph="&#xECC8;" />
                             </toolkit:SettingsCard.HeaderIcon>
-                            <Button x:Name="Generate"
+                            <Button x:Name="GenerateBtn"
                                         Content="生成"
                                         Style="{StaticResource AccentButtonStyle}"
                                         Click="Generate_Btn_ClickAsync"/>
@@ -144,8 +146,6 @@
                             <NumberBox x:Name="NumberOfGenerateTime_Input"
                                        Value="{x:Bind GenerationFreq, Mode=TwoWay}"
                                        PlaceholderText="输入次数"
-                                       LostFocus="NumberOfGenerateTime_Input_LostFocus"
-                                       ValueChanged="NumberOfGenerateTime_Input_ValueChanged"
                                        SpinButtonPlacementMode="Compact"
                                        SmallChange="1"
                                        LargeChange="5"/>
@@ -168,10 +168,6 @@
                                 </toolkit:SettingsCard>
                             </toolkit:SettingsExpander.Items>
                         </toolkit:SettingsExpander>
-
-                        <!--生成次数修改的提示-->
-                        <InfoBar x:Name="InforBar"
-                                 IsOpen="False"/>
                     </StackPanel>
                 </ScrollView>
 
@@ -198,5 +194,15 @@
                 </Grid>
             </Grid>
         </Grid>
+        <!--提示内容-->
+        <TeachingTip x:Name="GnrtFreqTeachingTip"
+                    Target="{x:Bind NumberOfGenerateTime_Input}"
+                    Title="输入合法的数值"
+                    Subtitle="请按照规范输入一个位于 1~50（含两端）范围内的整数。"
+                    IsOpen="False">
+            <TeachingTip.IconSource>
+                <SymbolIconSource Symbol="Keyboard"/>
+            </TeachingTip.IconSource>
+        </TeachingTip>
     </Grid>
 </Page>
