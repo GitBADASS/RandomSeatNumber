@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -188,6 +189,29 @@ namespace RandomSeatNumber.Pages
                 GeneratedResList.Clear();
             }        
 
+        }
+
+        private void ListCopyButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if(GeneratedResList.Count == 0) { return; }
+
+            var package = new DataPackage();
+            string resList = "";
+            foreach (var i in GeneratedResList) 
+            { 
+                resList += i + "\n";
+            }
+            package.SetText(resList);
+            Clipboard.SetContent(package);
+
+        }
+
+        private void ResCopyButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if(GeneratedRes == null) { return; }
+            var package = new DataPackage();
+            package.SetText(GeneratedRes);
+            Clipboard.SetContent(package);
         }
     }
 }

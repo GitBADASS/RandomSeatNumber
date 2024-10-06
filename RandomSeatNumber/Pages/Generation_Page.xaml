@@ -22,11 +22,24 @@
         <ScrollView Grid.Column="0"
                     VerticalAlignment="Stretch"
                     Background="{StaticResource CardBackgroundFillColorDefault}"
-                    BorderThickness="1"
+                    BorderThickness="1,0,0,1"
                     BorderBrush="{StaticResource CardStrokeColorDefault}">
             <!--生成报告显示区域-->
             <StackPanel Padding="150, 20, 150, 20"
                         Spacing="12">
+                <!--开发阶段提示-->
+                <InfoBar IsOpen="True"
+                         Severity="Warning"
+                         Title="程序仍处开发阶段">
+                    <TextBlock Margin="0,0,0,15"
+                               TextWrapping="WrapWholeWords">
+                        <Run>本程序仍处于开发阶段，大多数 GUI、程序功能等尚未完善。我们建议你通过以下方式了解更多本程序有关信息：</Run>
+                        <LineBreak/>
+                        <Hyperlink NavigateUri="https://github.com/GitBADASS/RandomSeatNumber">本程序的 GitHub 仓库</Hyperlink>
+                        <!--<Hyperlink NavigateUri="">本程序的 GitHub 仓库</Hyperlink>-->
+                    </TextBlock>
+                </InfoBar>
+
                 <!--生成结果 标题-->
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}">
                     生成结果
@@ -46,7 +59,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid BorderBrush="{StaticResource CardStrokeColorDefault}"
-                          BorderThickness="0,0,0,1">
+                          BorderThickness="0,0,0,1"
+                          Padding="15">
                         <TextBlock x:Name="GnrtResTextBlock"
                                    Grid.Row="0"
                                    Style="{StaticResource DisplayTextBlockStyle}"
@@ -57,10 +71,10 @@
 
                     <CommandBar Grid.Row="1"
                                 Background="{StaticResource CardBackgroundFillColorDefault}">
-                        <AppBarButton Icon="Copy" Label="复制" />
+                        <AppBarButton Icon="Copy" Label="复制" Click="ResCopyButtonClicked"/>
                         <AppBarSeparator/>
-                        <AppBarButton Icon="ZoomIn" Label="放大" />
-                        <AppBarButton Icon="ZoomOut" Label="缩小" />
+                        <AppBarButton Icon="ZoomIn" Label="放大"  IsEnabled="False"/>
+                        <AppBarButton Icon="ZoomOut" Label="缩小"  IsEnabled="False"/>
 
                         <CommandBar.Content>
                             <TextBlock Text="最新的生成结果" Margin="12,14"/>
@@ -96,12 +110,13 @@
 
                     <CommandBar Grid.Row="1"
                                 Background="{StaticResource CardBackgroundFillColorDefault}">
-                        <AppBarButton Icon="Copy" Label="复制"/>
+                        <AppBarButton Icon="Copy" Label="复制"
+                                      Click="ListCopyButtonClicked"/>
                         <AppBarButton Icon="Delete" Label="清空"
                                       Click="ListClearButton_ClickAsync"/>
                         <AppBarSeparator/>
-                        <AppBarButton Icon="ZoomIn" Label="放大" />
-                        <AppBarButton Icon="ZoomOut" Label="缩小" />
+                        <AppBarButton Icon="ZoomIn" Label="放大" IsEnabled="False"/>
+                        <AppBarButton Icon="ZoomOut" Label="缩小"  IsEnabled="False"/>
 
                         <CommandBar.Content>
                             <TextBlock Text="历史生成结果" Margin="12,14"/>
@@ -111,7 +126,12 @@
             </StackPanel>
         </ScrollView>
 
-        <toolkit:GridSplitter Grid.Column="1"/>
+        <toolkit:GridSplitter Grid.Column="1"
+                              Background="{StaticResource CardBackgroundFillColorDefault}"
+                              BorderThickness="0,1,1,1"
+                              BorderBrush="{StaticResource CardStrokeColorDefault}"
+                              CornerRadius="6"
+                              IsThumbVisible="False"/>
 
         <!--总体操作空间-->
         <Grid Grid.Column="2">
@@ -153,7 +173,8 @@
 
                         <toolkit:SettingsExpander Header="其它生成设置"
                                                   HorizontalAlignment="Stretch"
-                                                  Description="在此处设置包括去重等其它有关选项">
+                                                  Description="在此处设置包括去重等其它有关选项"
+                                                  IsExpanded="True">
                             <!--选择是否去重的卡片-->
                             <toolkit:SettingsExpander.Items>
                                 <toolkit:SettingsCard Header="选择是否去重"
