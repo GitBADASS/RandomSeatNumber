@@ -1,4 +1,3 @@
-using CommunityToolkit.WinUI.UI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using RandomSeatNumber.Animations;
@@ -7,6 +6,7 @@ using RandomSeatNumber.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -99,6 +99,8 @@ namespace RandomSeatNumber.Pages
         {
 
         }
+
+        // 随页面加载
         private void GenerationPageOnLauched(object sender, RoutedEventArgs e)
         {
             // 按照本地设置分配参数值
@@ -109,10 +111,15 @@ namespace RandomSeatNumber.Pages
             // 防止程序一运行，在其值尚为初始值（0）时就激发提示
             NumberOfGenerateTime_Input.ValueChanged += NumberOfGenerateTime_Input_ValueChanged;
 
+            GeneratedResList.CollectionChanged += ResListChanged;
+
+            // 暂时硬编码
             List<int[]> test;
-            List<int[]> bl = new();
-            bl.Add(new int[] { 7, 2 });
-            bl.Add(new int[] { 7, 1 });
+            List<int[]> bl = new()
+            {
+                new int[] { 7, 2 },
+                new int[] { 7, 1 }
+            };
             InitialDistract dis1 = new(1, 6, 3, null, null);
             InitialDistract dis2 = new(2, 6, 3, null, null);
             InitialDistract dis3 = new(3, 7, 3, null, bl);
@@ -124,6 +131,12 @@ namespace RandomSeatNumber.Pages
             }
 
             generator = new(test);
+        }
+
+        private void ResListChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            
+            
         }
 
         // 生成座位号的函数
@@ -213,5 +226,6 @@ namespace RandomSeatNumber.Pages
             package.SetText(GeneratedRes);
             Clipboard.SetContent(package);
         }
+
     }
 }

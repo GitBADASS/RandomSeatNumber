@@ -36,6 +36,8 @@
                         <Run>本程序仍处于开发阶段，大多数 GUI、程序功能等尚未完善。我们建议你通过以下方式了解更多本程序有关信息：</Run>
                         <LineBreak/>
                         <Hyperlink NavigateUri="https://github.com/GitBADASS/RandomSeatNumber">本程序的 GitHub 仓库</Hyperlink>
+                        <LineBreak/>
+                        <Hyperlink NavigateUri="https://gitbadass.github.io/">我们的网站，含有文档、博客等</Hyperlink>
                         <!--<Hyperlink NavigateUri="">本程序的 GitHub 仓库</Hyperlink>-->
                     </TextBlock>
                 </InfoBar>
@@ -100,13 +102,14 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <ListView x:Name="ResListView"
-                              Grid.Row="0"
                               Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                               BorderBrush="{StaticResource CardStrokeColorDefault}"
                               BorderThickness="0,0,0,1"
                               Height="350"
                               ItemsSource="{x:Bind GeneratedResList, Mode=TwoWay}">
+                        
                     </ListView>
+
 
                     <CommandBar Grid.Row="1"
                                 Background="{StaticResource CardBackgroundFillColorDefault}">
@@ -130,8 +133,7 @@
                               Background="{StaticResource CardBackgroundFillColorDefault}"
                               BorderThickness="0,1,1,1"
                               BorderBrush="{StaticResource CardStrokeColorDefault}"
-                              CornerRadius="6"
-                              IsThumbVisible="False"/>
+                              CornerRadius="6"/>
 
         <!--总体操作空间-->
         <Grid Grid.Column="2">

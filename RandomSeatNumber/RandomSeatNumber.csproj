@@ -20,18 +20,13 @@
 	<DefaultLanguage>zh-cn</DefaultLanguage>
 	<PackageCertificateThumbprint>0BA1EE7ECFF084225A68246AA2EC9299BC112A9E</PackageCertificateThumbprint>
 	<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-	<SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
-	<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+	<TargetFramework>net6.0-windows10.0.22621.0</TargetFramework>
 	<WindowsSdkPackageVersion>10.0.19041.38</WindowsSdkPackageVersion>
 	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
 	<None Remove="hlt_x64.ico" />
-	<None Remove="Pages\Generation_Page.xaml" />
-	<None Remove="Pages\Information_Page.xaml" />
-	<None Remove="Pages\Info_Page.xaml" />
-	<None Remove="Pages\SeatOrder_Page.xaml" />
-	<None Remove="Pages\Settings_Page.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,14 +39,13 @@
 	<Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
 	<Content Include="Assets\StoreLogo.png" />
 	<Content Include="Assets\Wide310x150Logo.scale-200.png" />
+	<Content Include="Images\RandomSN.ico" />
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
 	<PackageReference Include="CommunityToolkit.WinUI.Behaviors" Version="8.0.240109" />
 	<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.240109" />
 	<PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" Version="8.0.240109" />
-	<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
 	<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
 	<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
 	<Manifest Include="$(ApplicationManifest)" />
