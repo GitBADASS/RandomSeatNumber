@@ -4,8 +4,8 @@
 	<TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
 	<RootNamespace>RandomSeatNumber</RootNamespace>
 	<ApplicationManifest>app.manifest</ApplicationManifest>
-	<Platforms>x86;x64;ARM64</Platforms>
-	<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+	<Platforms>x86;x64;AnyCPU</Platforms>
+	<RuntimeIdentifiers>win10-x86;win10-x64</RuntimeIdentifiers>
 	<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 	<UseWinUI>true</UseWinUI>
 	<EnableMsixTooling>true</EnableMsixTooling>
@@ -26,7 +26,12 @@
 	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-	<None Remove="hlt_x64.ico" />
+	  <None Remove="hlt_x64.ico" />
+	  <None Remove="Pages\Generation_Page.xaml" />
+	  <None Remove="Pages\Information_Page.xaml" />
+	  <None Remove="Pages\Info_Page.xaml" />
+	  <None Remove="Pages\SeatOrder_Page.xaml" />
+	  <None Remove="Pages\Settings_Page.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<PackageReference Include="CommunityToolkit.Common" Version="8.3.2" />
 	<PackageReference Include="CommunityToolkit.WinUI.Behaviors" Version="8.0.240109" />
 	<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.240109" />
 	<PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" Version="8.0.240109" />

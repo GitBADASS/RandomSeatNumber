@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RandomSeatNumber.SeatArrangement.intitial;
+using System.Collections.Generic;
 
 namespace RandomSeatNumber.Generate
 {

@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using RandomSeatNumber.Generate;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
@@ -25,10 +26,16 @@ namespace RandomSeatNumber
 
         public App()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         }
 
-
+        private void CurrentDomain_UnhandledException(object sender, System.UnhandledExceptionEventArgs e)
+        {
+            // 记录异常信息
+            var exception = e.ExceptionObject as Exception;
+            File.WriteAllText("error.log", exception?.ToString());
+        }
 
         /// <summary>
         /// Invoked when the application is launched.

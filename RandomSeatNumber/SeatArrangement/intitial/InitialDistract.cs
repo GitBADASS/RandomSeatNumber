@@ -1,7 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace RandomSeatNumber.Generate
+namespace RandomSeatNumber.SeatArrangement.intitial
 {
     /// <summary>
     /// 组（区）类
@@ -48,10 +47,10 @@ namespace RandomSeatNumber.Generate
         {
             #region Assignment
             RowLimition = rowLimition;
-            ColumnLimition = columnLimition;     
+            ColumnLimition = columnLimition;
             WhiteList = whitelist;
-            BlackList = blackList; 
-            this.ID = ID; 
+            BlackList = blackList;
+            this.ID = ID;
             #endregion
         }
     }

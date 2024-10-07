@@ -12,23 +12,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决�
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM64 = Debug|ARM64
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|ARM64 = Release|ARM64
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|ARM64.Build.0 = Debug|ARM64
-		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|Any CPU.Build.0 = Debug|x64
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|ARM64.Deploy.0 = Debug|Any CPU
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|x64.ActiveCfg = Debug|x64
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|x64.Build.0 = Debug|x64
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|x64.Deploy.0 = Debug|x64
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|x86.ActiveCfg = Debug|x86
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|x86.Build.0 = Debug|x86
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Debug|x86.Deploy.0 = Debug|x86
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Release|ARM64.ActiveCfg = Release|ARM64
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Release|ARM64.Build.0 = Release|ARM64
 		{34BBFDE3-C576-46F2-B79D-7AEE9254DEFB}.Release|ARM64.Deploy.0 = Release|ARM64

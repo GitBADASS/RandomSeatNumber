@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using RandomSeatNumber.Animations;
 using RandomSeatNumber.Generate;
 using RandomSeatNumber.Helpers;
+using RandomSeatNumber.SeatArrangement.intitial;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,12 +82,12 @@ namespace RandomSeatNumber.Pages
             if(sender.Value >= 50)
             {
                 GnrtFreqTeachingTip.IsOpen = true;
-                Debug.WriteLine($"生成次数数值过大！错误值为 {sender.Value}");
+                //Debug.WriteLine($"生成次数数值过大！错误值为 {sender.Value}");
                 sender.Value = 50;
             } else if (sender.Value <= 0)
             {
                 GnrtFreqTeachingTip.IsOpen = true;
-                Debug.WriteLine($"生成次数数值过小！错误值为 {sender.Value}");
+                //Debug.WriteLine($"生成次数数值过小！错误值为 {sender.Value}");
                 sender.Value = 1;
             }
             else
@@ -125,10 +126,10 @@ namespace RandomSeatNumber.Pages
             InitialDistract dis3 = new(3, 7, 3, null, bl);
 
             test = SeatNumberTranslator.CreateSeatTableByDistracts(dis1, dis2, dis3);
-            foreach (var i in test)
-            {
-                Debug.WriteLine($"第 {i} 位为 {i[0]} 组 {i[1]} 行 {i[2]} 列");
-            }
+            //foreach (var i in test)
+            //{
+            //    Debug.WriteLine($"第 {i} 位为 {i[0]} 组 {i[1]} 行 {i[2]} 列");
+            //}
 
             generator = new(test);
         }
@@ -148,7 +149,7 @@ namespace RandomSeatNumber.Pages
                 if(IsRepeatable)
                 {
                     resArr = generator.GetDistinctRandomSeatNumber();
-                    Debug.WriteLine($"第 {i} 次无重生成，容器剩余 {generator.Content.Count} 个内容");
+                    //Debug.WriteLine($"第 {i} 次无重生成，容器剩余 {generator.Content.Count} 个内容");
                 }
                 else
                 {
