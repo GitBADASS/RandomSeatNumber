@@ -50,6 +50,12 @@ namespace RandomSeatNumber.Helpers
             {
                 ApplicationData.Current.LocalSettings.Values[GenerationFreqKey] = value.ToString();
             }    
+                else
+                {
+                    ApplicationData.Current.LocalSettings.Values.Add(GenerationFreqKey, value.ToString());
+                }
+                  
+            }    
         }
     }
 }
